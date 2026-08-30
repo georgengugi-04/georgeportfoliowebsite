@@ -72,6 +72,7 @@ body {
 .text-balance {
   text-wrap: balance;
 }
+<<<<<<< HEAD
 
 /* photo marquee */
 @keyframes marquee-scroll {
@@ -90,3 +91,5 @@ body {
 .marquee-row:hover .marquee-track {
   animation-play-state: paused;
 }
+=======
+>>>>>>> 9fda05821d0f94652ecb25a828cd713a8867b03a

@@ -19,12 +19,20 @@ export default function Hero() {
           transition={{ duration: 0.5 }}
           className="flex items-center gap-3"
         >
+<<<<<<< HEAD
           <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border border-line shrink-0">
+=======
+          <div className="relative w-9 h-9 rounded-full overflow-hidden border border-line shrink-0">
+>>>>>>> 9fda05821d0f94652ecb25a828cd713a8867b03a
             <Image
               src="/profile/george.jpg"
               alt="George Ngugi"
               fill
+<<<<<<< HEAD
               sizes="80px"
+=======
+              sizes="36px"
+>>>>>>> 9fda05821d0f94652ecb25a828cd713a8867b03a
               className="object-cover"
               priority
             />

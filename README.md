@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # George Ngugi — Portfolio
 
 Software engineer / UI-UX portfolio. Next.js 14 (App Router), TypeScript, Tailwind CSS, Framer Motion.
@@ -71,3 +72,6 @@ components/
   ui/           Reveal (scroll-in wrapper)
 data/           projects.ts, skills.ts, experience.ts — all content lives here
 ```
+=======
+
+>>>>>>> 9fda05821d0f94652ecb25a828cd713a8867b03a

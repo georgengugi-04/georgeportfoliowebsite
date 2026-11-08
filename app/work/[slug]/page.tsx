@@ -3,7 +3,9 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Github, ExternalLink } from "lucide-react";
-import { projects, getProject } from "@/data/projects";
+import { projects, getProject, statusLabel } from "@/data/projects";
+import PhoneFrame from "@/components/work/PhoneFrame";
+import ProjectVisual from "@/components/work/ProjectVisual";
 import Reveal from "@/components/ui/Reveal";
 
 export function generateStaticParams() {
@@ -16,25 +18,19 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: project.title,
     description: project.description,
+    alternates: { canonical: `/work/${project.slug}` },
     openGraph: { title: project.title, description: project.description },
   };
 }
-
-const statusLabel: Record<string, string> = {
-  live: "Live",
-  "in-progress": "In progress",
-  prototype: "Prototype",
-  concept: "Concept",
-};
 
 export default function CaseStudyPage({ params }: { params: { slug: string } }) {
   const project = getProject(params.slug);
   if (!project) notFound();
 
-  const hasDepth = project.architecture.length > 0 || project.challenges.length > 0;
+  const hasDepth = project.architecture.length > 0 || project.challenges.length > 0 || !!project.problem;
 
   return (
-    <div className="pt-40 pb-24">
+    <div className="pt-36 md:pt-44 pb-24">
       {/* 01 — Overview */}
       <section className="container-page">
         <Reveal className="flex flex-wrap items-center gap-3 font-mono text-xs uppercase tracking-wide text-mist">
@@ -74,7 +70,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           </div>
           <div>
             <div className="eyebrow">Technologies</div>
-            <div className="mt-2 text-sm text-mist">{project.technologies.join(" · ")}</div>
+            <div className="mt-2 text-sm text-mist">{project.technologies.length ? project.technologies.join(" · ") : "Stack to be confirmed"}</div>
           </div>
           <div className="flex flex-wrap gap-3">
             {project.liveUrl && (
@@ -97,6 +93,11 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
                 Source <Github className="w-3.5 h-3.5" />
               </a>
             )}
+            {project.additionalLiveUrls?.map((u) => (
+              <a key={u.url} href={u.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-full border border-line px-4 py-2 text-sm font-mono hover:border-signal hover:text-signal transition-colors">
+                {u.label} <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            ))}
             {project.socials?.map((s) => (
               <a
                 key={s.label}
@@ -111,16 +112,11 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           </div>
         </Reveal>
 
-        <Reveal delay={0.2} className="mt-16 aspect-[16/9] rounded-2xl bg-graphite border border-line overflow-hidden relative">
-          <Image
-            src={project.heroImage}
-            alt={`${project.title} interface`}
-            fill
-            sizes="(max-width: 1400px) 100vw, 1400px"
-            className="object-cover object-top"
-            priority
-          />
-        </Reveal>
+        {project.heroImage && (
+          <Reveal delay={0.2} className="mt-16">
+            <ProjectVisual project={project} className="aspect-[16/9]" sizes="(max-width: 1400px) 100vw, 1400px" priority />
+          </Reveal>
+        )}
       </section>
 
       {/* Gallery */}
@@ -134,8 +130,31 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         </section>
       )}
 
+      {project.screens && project.screens.length > 0 && (
+        <section className="container-page mt-24" aria-labelledby="screens-h">
+          <Reveal>
+            <span className="eyebrow" id="screens-h">The app</span>
+          </Reveal>
+          <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
+            {project.screens.map((sc, i) => (
+              <li key={sc.src} className={i % 2 ? "lg:translate-y-8" : ""}>
+                <PhoneFrame src={sc.src} label={sc.label} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+      {project.screensPending && (
+        <section className="container-page mt-16">
+          <Reveal className="grid-field rounded-sm border border-dashed border-line p-8 md:p-12">
+            <span className="eyebrow">App screens</span>
+            <p className="mt-3 max-w-xl text-mist">{project.screensPending}</p>
+          </Reveal>
+        </section>
+      )}
+
       {/* 02 — Problem / 03 — Solution */}
-      <section className="container-page mt-24 md:mt-32 grid md:grid-cols-2 gap-12">
+      {project.problem && (<section className="container-page mt-24 md:mt-32 grid md:grid-cols-2 gap-12">
         <Reveal>
           <span className="eyebrow">02 — The problem</span>
           <p className="mt-4 text-lg text-balance">{project.problem}</p>
@@ -144,7 +163,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           <span className="eyebrow">03 — The solution</span>
           <p className="mt-4 text-lg text-balance">{project.solution}</p>
         </Reveal>
-      </section>
+      </section>)}
 
       {/* Flow / journey */}
       {project.flow && project.flow.length > 0 && (
@@ -166,7 +185,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       )}
 
       {/* 04 — My contribution */}
-      <section className="container-page mt-24 md:mt-32">
+      {project.myContribution && (<section className="container-page mt-24 md:mt-32">
         <Reveal>
           <span className="eyebrow">04 — My engineering contribution</span>
           <p className="mt-4 text-lg max-w-3xl text-balance">{project.myContribution}</p>
@@ -177,7 +196,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             <p className="mt-2 text-mist text-sm">{project.teamContribution}</p>
           </Reveal>
         )}
-      </section>
+      </section>)}
 
       {/* 05 — Architecture */}
       {project.architecture.length > 0 && (
@@ -248,11 +267,20 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         </section>
       )}
 
-      {!hasDepth && (
+      {project.verification && (
+        <section className="container-page mt-16">
+          <Reveal className="rounded-sm border border-line p-6 max-w-3xl">
+            <div className="eyebrow">Status & verification</div>
+            <p className="mt-2 text-sm text-mist">{project.verification}</p>
+          </Reveal>
+        </section>
+      )}
+
+      {!hasDepth && !project.screensPending && (
         <section className="container-page mt-24 md:mt-32">
           <Reveal className="rounded-xl border border-line p-8 text-mist text-sm">
-            The full write-up for {project.title} is still being put together.
-            Check the live project in the meantime.
+            The full write-up for {project.title} will be added once its details are verified.
+            You can explore the live project in the meantime.
           </Reveal>
         </section>
       )}

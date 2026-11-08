@@ -1,41 +1,80 @@
+export type TimelineType = "education" | "attachment" | "collaboration" | "independent" | "assessment";
+
 export type TimelineEntry = {
-  period: string;
+  period: string; // only what is verified — no invented dates
   title: string;
   org: string;
-  type: "education" | "project" | "team" | "community";
+  type: TimelineType;
   description: string;
+  href?: string;
 };
 
-// Fill in exact dates / titles — placeholders are marked clearly rather than invented.
+export const typeLabel: Record<TimelineType, string> = {
+  education: "Education",
+  attachment: "Attachment",
+  collaboration: "Collaboration",
+  independent: "Independent",
+  assessment: "Technical assessment",
+};
+
+// Exact start/end dates are intentionally omitted until confirmed.
 export const timeline: TimelineEntry[] = [
   {
-    period: "In progress",
+    period: "Final year",
     title: "BSc, Information Technology",
     org: "KCA University, Nairobi",
     type: "education",
-    description: "Undergraduate studies in Information Technology.",
+    description: "Undergraduate degree in Information Technology, currently in the final year.",
   },
   {
-    period: "Ongoing",
-    title: "Contributor, JHUB Africa",
-    org: "JKUAT / JHUB Africa",
-    type: "community",
-    description: "Working within the JKUAT / JHUB Africa ecosystem alongside a small product team.",
+    period: "2025 — present",
+    title: "Attachment & project work",
+    org: "JHUB Africa (JKUAT)",
+    type: "attachment",
+    description:
+      "Worked inside the JKUAT / JHUB Africa ecosystem with a small product team on agriculture and livestock traceability projects.",
   },
   {
-    period: "Ongoing",
+    period: "2025 — present",
     title: "GreenTrack — Flutter developer",
     org: "Team project",
-    type: "project",
+    type: "collaboration",
     description:
-      "Architecture, UI implementation and Firebase integration for a farm-to-table traceability app spanning five supply-chain roles.",
+      "App architecture, UI implementation and Firebase integration for a farm-to-table traceability app spanning several supply-chain roles.",
+    href: "/work/greentrack",
   },
   {
-    period: "Ongoing",
-    title: "BeefTrace — Frontend & UI/UX engineer",
+    period: "2025 — present",
+    title: "BeefTrace — frontend engineer & UI/UX designer",
     org: "Team project",
-    type: "project",
+    type: "collaboration",
     description:
-      "Design system and Next.js build-out for a livestock traceability platform's product-facing site.",
+      "Design system and Next.js build of the product-facing web experience for a livestock traceability platform. Backend and platform work belongs to the wider team.",
+    href: "/work/beeftrace",
+  },
+  {
+    period: "2026",
+    title: "PAMOJA — stock reservation service",
+    org: "Stage 5 technical assessment",
+    type: "assessment",
+    description:
+      "Transactional, idempotent stock reservation API on PostgreSQL with automated tests. Assessment work, not employment or a production system.",
+    href: "/work/pamoja",
+  },
+  {
+    period: "2026",
+    title: "EartGalla — gallery & marketplace",
+    org: "Independent project",
+    type: "independent",
+    description: "Web storefront, enquiry-based purchase flow and brand graphics for an African art gallery.",
+    href: "/work/eartgalla",
+  },
+  {
+    period: "Now",
+    title: "Tigala Mobile & EartGalla Mobile",
+    org: "Independent projects",
+    type: "independent",
+    description: "Two mobile applications currently in development: a cultural archive of Kenya's 42 tribes, and a mobile gallery.",
+    href: "/work/tigala-mobile",
   },
 ];

@@ -1,80 +1,45 @@
-"use client";
-
 import Link from "next/link";
-import Image from "next/image";
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { projects } from "@/data/projects";
+import { projects, featuredOrder } from "@/data/projects";
 import Reveal from "@/components/ui/Reveal";
+import ProjectTile from "@/components/work/ProjectTile";
 
-const featured = projects.filter((p) =>
-  ["beeftrace", "greentrack", "eartgalla"].includes(p.slug)
-);
+const layout: Record<string, { span: string; aspect?: string; phones?: boolean }> = {
+  greentrack: { span: "lg:col-span-12", phones: true },
+  "tigala-mobile": { span: "lg:col-span-5", aspect: "aspect-[4/5]" },
+  beeftrace: { span: "lg:col-span-7", aspect: "aspect-[16/10]" },
+  pamoja: { span: "lg:col-span-7", aspect: "aspect-[16/10]" },
+  eartgalla: { span: "lg:col-span-5", aspect: "aspect-[4/3]" },
+  "eartgalla-mobile": { span: "lg:col-span-5", aspect: "aspect-[4/3]" },
+  arkyls: { span: "lg:col-span-4", aspect: "aspect-[4/3]" },
+  webstories: { span: "lg:col-span-3", aspect: "aspect-[4/3]" },
+};
 
 export default function FeaturedWork() {
+  const list = featuredOrder.map((s) => projects.find((p) => p.slug === s)!);
   return (
-    <section className="border-t border-line py-24 md:py-32">
+    <section className="py-24 md:py-32" id="work">
       <div className="container-page">
-        <Reveal className="flex items-end justify-between gap-4 mb-12">
+        <Reveal className="mb-14 flex items-end justify-between gap-4">
           <div>
-            <span className="eyebrow">02 — Selected work</span>
-            <h2 className="mt-4 font-display text-display-md">Real products, not repos.</h2>
+            <span className="eyebrow">Featured work</span>
+            <h2 className="mt-4 max-w-2xl font-display text-display-lg text-balance">Real products, honestly labelled.</h2>
           </div>
-          <Link
-            href="/work"
-            className="hidden md:inline-flex items-center gap-1.5 font-mono text-sm text-mist hover:text-signal transition-colors"
-          >
-            All work <ArrowUpRight className="w-4 h-4" />
+          <Link href="/work" className="hidden items-center gap-1.5 font-mono text-sm text-mist transition-colors hover:text-signal md:inline-flex">
+            All work <ArrowUpRight className="h-4 w-4" />
           </Link>
         </Reveal>
 
-        <div className="flex flex-col">
-          {featured.map((p, i) => (
-            <Reveal key={p.slug} delay={i * 0.06}>
-              <Link
-                href={`/work/${p.slug}`}
-                className="group grid md:grid-cols-[auto_1fr_auto] items-center gap-4 md:gap-10 py-8 border-t border-line last:border-b"
-              >
-                <span className="font-mono text-sm text-mist group-hover:text-signal transition-colors">
-                  0{i + 1}
-                </span>
-
-                <div>
-                  <div className="flex items-center gap-3">
-                    {p.logo && (
-                      <Image
-                        src={p.logo}
-                        alt=""
-                        width={120}
-                        height={36}
-                        className="h-6 md:h-8 w-auto object-contain"
-                      />
-                    )}
-                    <h3 className="font-display text-2xl md:text-4xl transition-transform duration-300 ease-engineer group-hover:translate-x-2">
-                      {p.title}
-                    </h3>
-                  </div>
-                  <p className="mt-2 text-mist text-sm md:text-base max-w-xl">{p.description}</p>
-                  <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs uppercase tracking-wide text-mist">
-                    <span>{p.year}</span>
-                    <span className="text-line">·</span>
-                    <span>{p.category}</span>
-                  </div>
-                </div>
-
-                <motion.span
-                  className="hidden md:flex w-12 h-12 rounded-full border border-line items-center justify-center group-hover:border-signal group-hover:bg-signal group-hover:text-ink transition-colors"
-                >
-                  <ArrowUpRight className="w-5 h-5" />
-                </motion.span>
-              </Link>
-            </Reveal>
-          ))}
+        <div className="grid gap-x-8 gap-y-20 lg:grid-cols-12">
+          {list.map((p, i) => {
+            const l = layout[p.slug];
+            return <ProjectTile key={p.slug} project={p} index={i} className={l.span} aspect={l.aspect} showPhones={l.phones} priority={i === 0} />;
+          })}
         </div>
 
-        <div className="mt-10 md:hidden">
-          <Link href="/work" className="inline-flex items-center gap-1.5 font-mono text-sm text-signal">
-            All work <ArrowUpRight className="w-4 h-4" />
+        <div className="mt-14">
+          <Link href="/work" className="btn-ghost">
+            See every project <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
       </div>

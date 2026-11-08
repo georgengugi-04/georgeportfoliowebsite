@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import clsx from "clsx";
 import { nav } from "@/data/site";
+import ThemeToggle from "./ThemeToggle";
 
 const isActive = (pathname: string, href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
@@ -75,6 +76,7 @@ export default function Nav() {
             </nav>
 
             <div className="flex items-center gap-2">
+              <ThemeToggle />
               <Link href="/contact" className="hidden items-center gap-2 rounded-full bg-signal px-4 py-2 font-mono text-[13px] font-medium text-ink transition-colors hover:bg-paper md:inline-flex">
                 <span className="h-1.5 w-1.5 rounded-full bg-ink" aria-hidden />
                 Available — let&apos;s talk

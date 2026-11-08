@@ -210,19 +210,19 @@ export default function RakingLight() {
           style={{ touchAction: "none" }}
           className={clsx("h-auto max-h-[72vh] w-auto max-w-full cursor-crosshair transition-opacity duration-500", status === "ready" ? "opacity-100" : "opacity-0")}
         />
-        {status === "loading" && <p className="absolute font-mono text-xs uppercase tracking-wide text-mist">Setting up the lamp…</p>}
+        {status === "loading" && <p className="absolute font-mono text-xs uppercase tracking-wide text-neutral-400">Setting up the lamp…</p>}
         {status === "error" && <p role="alert" className="absolute font-mono text-xs text-rust">Couldn&apos;t load this painting.</p>}
       </div>
 
       <div className="mx-auto mt-6 grid max-w-3xl gap-6 sm:grid-cols-3">
         <label className="block font-mono text-xs uppercase tracking-wide text-mist">
           Lamp height
-          <input type="range" min={14} max={220} value={height} onChange={(e) => setHeight(+e.target.value)} className="mt-3 w-full accent-[#B4FF39]" />
+          <input type="range" min={14} max={220} value={height} onChange={(e) => setHeight(+e.target.value)} className="mt-3 w-full accent-signal" />
           <span className="mt-1 block normal-case text-[11px]">Low = raking angle, long shadows</span>
         </label>
         <label className="block font-mono text-xs uppercase tracking-wide text-mist">
           Relief
-          <input type="range" min={1} max={24} value={relief} onChange={(e) => setReliefUi(+e.target.value)} className="mt-3 w-full accent-[#B4FF39]" />
+          <input type="range" min={1} max={24} value={relief} onChange={(e) => setReliefUi(+e.target.value)} className="mt-3 w-full accent-signal" />
           <span className="mt-1 block normal-case text-[11px]">How strongly paint is lifted off the canvas</span>
         </label>
         <div>

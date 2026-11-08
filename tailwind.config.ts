@@ -9,13 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#0A0B0A",        // near-black ground
-        paper: "#F6F5F1",      // off-white
-        graphite: "#1A1C1A",   // raised surface on dark
-        mist: "#8B8F8A",       // muted text on dark
-        line: "#232520",       // hairline borders on dark
-        signal: "#B4FF39",     // signature accent — electric lime
-        rust: "#D97757",       // reserved, used sparingly for status/warning only
+        // Theme-aware tokens: values live in app/globals.css (dark default, [data-theme="light"] override).
+        ink: "rgb(var(--ink) / <alpha-value>)",           // page ground
+        paper: "rgb(var(--paper) / <alpha-value>)",       // primary text
+        graphite: "rgb(var(--graphite) / <alpha-value>)", // raised surface
+        mist: "rgb(var(--mist) / <alpha-value>)",         // muted text
+        line: "rgb(var(--line) / <alpha-value>)",         // hairlines
+        signal: "rgb(var(--signal) / <alpha-value>)",     // accent (lime on dark, deep green on light for contrast)
+        rust: "rgb(var(--rust) / <alpha-value>)",         // errors / warnings only
+        // Fixed brand colours that must not change with the theme
+        lime: "#B4FF39",
+        night: "#0A0B0A",
       },
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],

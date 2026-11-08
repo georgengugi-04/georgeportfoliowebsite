@@ -1,58 +1,46 @@
 import Link from "next/link";
-import { Github, Linkedin, Mail, BookOpen } from "lucide-react";
+import { Github, Linkedin, Mail, BookOpen, Instagram } from "lucide-react";
+import { site, nav } from "@/data/site";
 
 export default function Footer() {
-  return (
-    <footer className="border-t border-line mt-32">
-      <div className="container-page py-16">
-        <p className="font-display text-2xl md:text-3xl max-w-xl text-balance">
-          Built with curiosity, code and too many browser tabs.
-        </p>
+  const social = [
+    { href: site.github, label: "GitHub", Icon: Github },
+    site.linkedin ? { href: site.linkedin, label: "LinkedIn", Icon: Linkedin } : null,
+    { href: site.instagram, label: "Instagram (Koshe.exe)", Icon: Instagram },
+    { href: site.medium, label: "Medium", Icon: BookOpen },
+    site.email ? { href: `mailto:${site.email}`, label: "Email", Icon: Mail } : null,
+  ].filter(Boolean) as { href: string; label: string; Icon: typeof Github }[];
 
-        <div className="mt-12 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+  return (
+    <footer className="border-t border-line">
+      <div className="container-page py-16">
+        <p className="max-w-xl font-display text-2xl text-balance md:text-3xl">{site.tagline}</p>
+        <div className="mt-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div>
             <div className="font-mono text-xs uppercase tracking-[0.18em] text-mist">
-              George Ngugi — Software Engineer
-              <span className="text-line"> · </span>
-              <span className="text-signal">Koshe.exe</span>
+              {site.name} <span className="text-line">·</span> <span className="text-signal">{site.alias}</span>
             </div>
-            <div className="mt-2 flex items-center gap-2 text-xs font-mono text-mist">
-              <span className="w-1.5 h-1.5 rounded-full bg-signal" />
-              Available for selected opportunities
+            <div className="mt-2 flex items-center gap-2 font-mono text-xs text-mist">
+              <span className="h-1.5 w-1.5 rounded-full bg-signal" aria-hidden /> {site.location} · Available for selected opportunities
             </div>
           </div>
-
-          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-mono text-mist" aria-label="Footer">
-            <Link href="/work" className="hover:text-paper transition-colors">Work</Link>
-            <Link href="/about" className="hover:text-paper transition-colors">About</Link>
-            <Link href="/skills" className="hover:text-paper transition-colors">Skills</Link>
-            <Link href="/experience" className="hover:text-paper transition-colors">Experience</Link>
-            <Link href="/contact" className="hover:text-paper transition-colors">Contact</Link>
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm text-mist" aria-label="Footer">
+            {nav.slice(1).map((l) => (
+              <Link key={l.href} href={l.href} className="transition-colors hover:text-paper">{l.label}</Link>
+            ))}
+            <Link href="/lab" className="transition-colors hover:text-paper">Lab</Link>
           </nav>
-
-          <div className="flex items-center gap-4">
-            <a href="mailto:hello@georgengugi.dev" aria-label="Email" className="text-mist hover:text-signal transition-colors">
-              <Mail className="w-4 h-4" />
-            </a>
-            <a href="https://github.com/georgengugi-04" aria-label="GitHub" className="text-mist hover:text-signal transition-colors">
-              <Github className="w-4 h-4" />
-            </a>
-            <a
-              href="https://www.linkedin.com/public-profile/settings/?trk=d_flagship3_profile_self_view_public_profile&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3BtMhBe%2FD0SEK%2FSaRThvyufA%3D%3D"
-              aria-label="LinkedIn"
-              className="text-mist hover:text-signal transition-colors"
-            >
-              <Linkedin className="w-4 h-4" />
-            </a>
-            <a href="https://medium.com/@georgengugi612" aria-label="Medium" className="text-mist hover:text-signal transition-colors">
-              <BookOpen className="w-4 h-4" />
-            </a>
-          </div>
+          <ul className="flex items-center gap-4">
+            {social.map(({ href, label, Icon }) => (
+              <li key={label}>
+                <a href={href} target={href.startsWith("mailto") ? undefined : "_blank"} rel="noreferrer" aria-label={label} className="text-mist transition-colors hover:text-signal">
+                  <Icon className="h-4 w-4" />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
-
-        <div className="mt-10 pt-6 border-t border-line text-xs font-mono text-mist">
-          © {new Date().getFullYear()} George Ngugi. All rights reserved.
-        </div>
+        <div className="mt-10 border-t border-line pt-6 font-mono text-xs text-mist">© {new Date().getFullYear()} {site.name}. All rights reserved.</div>
       </div>
     </footer>
   );

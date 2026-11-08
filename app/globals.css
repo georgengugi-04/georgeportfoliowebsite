@@ -90,3 +90,41 @@ body {
 .marquee-row:hover .marquee-track {
   animation-play-state: paused;
 }
+
+/* ---------- v2: creative-engineering system ---------- */
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(246, 245, 241, 0.45);
+}
+.glow-signal {
+  box-shadow: 0 0 60px -12px rgba(180, 255, 57, 0.35);
+}
+.btn-primary {
+  @apply inline-flex items-center gap-2 rounded-full bg-signal text-ink px-6 py-3 font-mono text-sm font-medium transition-colors hover:bg-paper;
+}
+.btn-ghost {
+  @apply inline-flex items-center gap-2 rounded-full border border-line px-6 py-3 font-mono text-sm text-paper transition-colors hover:border-signal hover:text-signal;
+}
+.chip {
+  @apply inline-flex items-center rounded-full border border-line px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wide text-mist;
+}
+.chip-live {
+  @apply border-signal/60 text-signal;
+}
+body.no-scroll {
+  overflow: hidden;
+}
+.masonry {
+  column-gap: 1rem;
+  columns: 1;
+}
+@media (min-width: 640px) {
+  .masonry { columns: 2; }
+}
+@media (min-width: 1024px) {
+  .masonry { columns: 3; }
+}
+.masonry > * {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}

@@ -1,61 +1,85 @@
-export type Skill = {
-  name: string;
-  usedIn: string[]; // project slugs
-  note: string;
-};
-
+export type Skill = { name: string; usedIn: string[]; note: string };
 export type SkillGroup = {
+  id: string;
   layer: string;
-  description: string;
+  blurb: string; // what this capability actually means
   skills: Skill[];
 };
 
+// "usedIn" lists only projects where the technology is documented in data/projects.ts.
 export const skillGroups: SkillGroup[] = [
   {
-    layer: "Interfaces",
-    description: "What people actually touch.",
+    id: "frontend",
+    layer: "Frontend",
+    blurb: "Responsive, accessible interfaces and component systems driven by a design system.",
     skills: [
-      { name: "Next.js", usedIn: ["beeftrace"], note: "App Router product & marketing sites" },
-      { name: "React", usedIn: ["beeftrace"], note: "Component architecture" },
-      { name: "TypeScript", usedIn: ["beeftrace"], note: "Typed application code" },
-      { name: "Tailwind CSS", usedIn: ["beeftrace"], note: "Design-system-driven styling" },
-      { name: "Flutter / Dart", usedIn: ["greentrack"], note: "Cross-platform mobile UI" },
+      { name: "React", usedIn: ["beeftrace", "eartgalla"], note: "Component architecture" },
+      { name: "Next.js", usedIn: ["beeftrace", "eartgalla"], note: "App Router sites and product surfaces" },
+      { name: "TypeScript", usedIn: ["beeftrace", "eartgalla"], note: "Typed application code" },
+      { name: "JavaScript", usedIn: ["eartgalla"], note: "Interaction and cart behaviour" },
+      { name: "HTML & CSS", usedIn: ["eartgalla"], note: "Semantic, responsive markup" },
+      { name: "Tailwind CSS", usedIn: ["beeftrace"], note: "Token-driven styling" },
+      { name: "Framer Motion · GSAP", usedIn: ["beeftrace"], note: "Purposeful scroll and UI motion" },
     ],
   },
   {
-    layer: "Motion",
-    description: "Animation with a job to do.",
+    id: "backend",
+    layer: "Backend",
+    blurb: "APIs, authentication and the data rules that keep a system correct.",
     skills: [
-      { name: "Framer Motion", usedIn: ["beeftrace"], note: "Scroll reveals, transitions" },
-      { name: "GSAP", usedIn: ["beeftrace"], note: "Timeline and scroll choreography" },
-      { name: "Lenis", usedIn: ["beeftrace"], note: "Smooth-scroll pacing" },
+      { name: "Node.js · Express", usedIn: [], note: "REST API development" },
+      { name: "REST API design", usedIn: ["pamoja"], note: "Small, explicit, testable endpoints" },
+      { name: "Authentication & authorization", usedIn: ["greentrack"], note: "Role-based access, Google Sign-In" },
+      { name: "Transactions & idempotency", usedIn: ["pamoja"], note: "Race-condition-safe reservations" },
     ],
   },
   {
-    layer: "Backend & data",
-    description: "What keeps the interface honest.",
+    id: "mobile",
+    layer: "Mobile",
+    blurb: "Cross-platform apps with real auth, storage and role-based workflows.",
     skills: [
-      { name: "Firebase Auth", usedIn: ["greentrack"], note: "Role-based access, Google Sign-In" },
+      { name: "Flutter", usedIn: ["greentrack"], note: "Cross-platform UI" },
+      { name: "Dart", usedIn: ["greentrack"], note: "Application logic and architecture" },
+      { name: "Firebase integration", usedIn: ["greentrack"], note: "Auth, Firestore and Storage" },
+    ],
+  },
+  {
+    id: "databases",
+    layer: "Databases",
+    blurb: "Modelling data around how it is actually used.",
+    skills: [
+      { name: "PostgreSQL", usedIn: ["pamoja"], note: "Transactional integrity" },
+      { name: "MySQL", usedIn: [], note: "Relational data modelling" },
       { name: "Firestore", usedIn: ["greentrack"], note: "Custody-chain and batch data" },
-      { name: "Firebase Storage", usedIn: ["greentrack"], note: "Batch and profile photo capture" },
     ],
   },
   {
-    layer: "Design",
-    description: "The layer before the code.",
+    id: "tools",
+    layer: "Tools & deployment",
+    blurb: "How the work gets reviewed, shipped and kept running.",
     skills: [
-      { name: "Design systems", usedIn: ["beeftrace", "greentrack"], note: "Tokenized palette, type and component rules" },
-      { name: "Responsive design", usedIn: ["beeftrace", "greentrack"], note: "Mobile-first, role-aware layouts" },
-      { name: "Interaction design", usedIn: ["beeftrace", "greentrack"], note: "Flows across multi-role systems" },
+      { name: "Git & GitHub", usedIn: ["pamoja", "greentrack"], note: "Version control and collaboration" },
+      { name: "VS Code", usedIn: [], note: "Primary editor" },
+      { name: "Vercel", usedIn: ["beeftrace", "eartgalla", "arkyls"], note: "Deployment" },
+      { name: "Cloudflare Workers", usedIn: ["webstories"], note: "Edge deployment" },
     ],
   },
+];
+
+export const architectureExamples = [
   {
-    layer: "Tooling",
-    description: "How the work actually ships.",
-    skills: [
-      { name: "Git", usedIn: ["beeftrace", "greentrack"], note: "Version control across team projects" },
-      { name: "VS Code", usedIn: ["beeftrace", "greentrack"], note: "Primary editor" },
-      { name: "Vercel", usedIn: ["beeftrace"], note: "Deployment" },
-    ],
+    project: "greentrack",
+    title: "Shared custody-chain model",
+    body: "One CustodyStage / CustodyEvent model drives every role's dashboard, so adding the Retailer role extended the system instead of forking it.",
+  },
+  {
+    project: "pamoja",
+    title: "Atomic reservation",
+    body: "Availability check and decrement happen in one PostgreSQL transaction, with idempotency keys so retries cannot double-reserve.",
+  },
+  {
+    project: "beeftrace",
+    title: "Supply-chain narrative",
+    body: "An eight-stage animated journey built on a component system with Framer Motion, GSAP and Lenis.",
   },
 ];

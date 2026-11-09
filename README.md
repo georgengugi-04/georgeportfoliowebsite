@@ -19,7 +19,7 @@ npm run lint
 - `creative.ts` — Creative Studio pieces (drop files in `public/` and add an entry).
 - `experience.ts`, `skills.ts`, `site.ts` — timeline, capability map, identity and links.
 
-### Adding EartGalla Mobile screenshots
+### EartGalla Mobile screenshots and video
 Put images in `public/projects/eartgalla-mobile/`, then in `data/projects.ts` add
 `screens: [{ src: "/projects/eartgalla-mobile/home.jpg", label: "Home" }]` and delete `screensPending`.
 

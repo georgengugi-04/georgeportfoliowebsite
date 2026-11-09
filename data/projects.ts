@@ -30,6 +30,8 @@ export type Project = {
   screens?: { src: string; label: string }[]; // phone screenshots, rendered in device frames
   shots?: { src: string; label: string }[]; // browser screenshots of the live site, 16:9-ish
   videos?: { id: string; title: string }[]; // YouTube video ids (click-to-load embeds)
+  screensAspect?: string; // aspect ratio of phone screenshots if not the default
+  demoVideo?: { src: string; poster: string; label: string };
   screensPending?: string; // honest note shown when screenshots are still to come
   additionalLiveUrls?: { label: string; url: string }[];
   verification?: string; // what has / has not been independently verified
@@ -347,26 +349,38 @@ export const projects: Project[] = [
   {
     slug: "eartgalla-mobile",
     title: "EartGalla Mobile",
-    subtitle: "The EartGalla gallery, in your pocket",
+    subtitle: "Community stories, languages and oral histories",
     year: "2026",
-    category: "Mobile development · Art & e-commerce",
+    category: "Mobile development · Culture & storytelling",
     role: "Developer & designer",
     status: "in-progress",
     disciplines: ["mobile", "creative"],
     technologies: [],
-    description: "A mobile companion to the EartGalla art gallery and marketplace, currently under development.",
+    description: "A mobile app for community stories, languages and oral histories from Kenya, with a reader built for long-form text. In active development.",
     longDescription:
-      "EartGalla Mobile brings the gallery to phones. It is a mobile application I am actively building. Screens and scope will be documented here as they stabilise.",
+      "EartGalla Mobile is a mobile app I am actively building. It is organised around Discover, Watch, Communities, Saved and Profile, with community pages that list languages, regions, written stories and room for oral histories and short films. A reader view includes adjustable text size and a sources section. The content shown in the screenshots is sample research drafts, marked in the app as not yet reviewed by communities or editors.",
     liveUrl: undefined,
     gallery: [],
-    screensPending: "Screenshots are coming. The app is in active development.",
-    problem: "Browsing and enquiring about artwork is best done where people already spend their time: on their phones.",
-    solution: "A mobile experience for the EartGalla collection, designed to match the web gallery's brand.",
+    screensAspect: "9/20",
+    screens: [
+      { src: "/projects/eartgalla-mobile/discover.jpg", label: "Discover — stories that carry us" },
+      { src: "/projects/eartgalla-mobile/communities.jpg", label: "Communities — search by name or language" },
+      { src: "/projects/eartgalla-mobile/community-profile.jpg", label: "A community page: languages, region, stories" },
+      { src: "/projects/eartgalla-mobile/article.jpg", label: "Reader view for long-form articles" },
+      { src: "/projects/eartgalla-mobile/sources.jpg", label: "Sources and further reading" },
+    ],
+    demoVideo: {
+      src: "/projects/eartgalla-mobile/demo.mp4",
+      poster: "/projects/eartgalla-mobile/demo-poster.jpg",
+      label: "Screen recording — browsing communities and reading an article",
+    },
+    problem: "Community stories, languages and histories need a place where they can be browsed by community and read comfortably on a phone.",
+    solution: "A mobile app that groups content by community, offers a reader with adjustable text size, shows sources, and labels draft material as not yet reviewed.",
     myContribution: "Design and development of the mobile application.",
     architecture: [],
     challenges: [],
     outcomes: ["Application build in progress"],
-    verification: "In development. Not released. Technology stack to be confirmed.",
+    verification: "In development. Not released. The content in the screenshots is sample draft material, marked in the app as not yet reviewed. Technology stack to be confirmed.",
   },
   {
     slug: "bagboy",

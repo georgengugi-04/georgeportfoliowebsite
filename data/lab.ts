@@ -30,6 +30,6 @@ export const experiments: Experiment[] = [
     title: "Swipe Gallery",
     line: "The gallery, one thumb at a time.",
     tech: "Framer Motion · gestures",
-    blurb: "An interaction study for EartGalla Mobile: swipe real artworks to save or pass, with drag physics and keyboard control.",
+    blurb: "An interaction study for the EartGalla collection: swipe real artworks to save or pass, with drag physics and keyboard control.",
   },
 ];

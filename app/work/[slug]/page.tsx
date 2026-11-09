@@ -139,7 +139,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
             {project.screens.map((sc, i) => (
               <li key={sc.src} className={i % 2 ? "lg:translate-y-8" : ""}>
-                <PhoneFrame src={sc.src} label={sc.label} />
+                <PhoneFrame src={sc.src} label={sc.label} appName={project.title} aspect={project.screensAspect} />
               </li>
             ))}
           </ul>
@@ -181,6 +181,31 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         </section>
       )}
 
+      {project.demoVideo && (
+        <section className="container-page mt-24" aria-labelledby="demo-h">
+          <Reveal>
+            <span className="eyebrow" id="demo-h">Screen recording</span>
+          </Reveal>
+          <figure className="mt-10 max-w-[280px]">
+            <div className="overflow-hidden rounded-[1.75rem] border border-line bg-graphite p-[5px] shadow-[0_30px_60px_-30px_rgba(0,0,0,0.9)]">
+              <video
+                className="block w-full rounded-[1.4rem]"
+                style={{ aspectRatio: "9/20" }}
+                controls
+                playsInline
+                muted
+                loop
+                preload="none"
+                poster={project.demoVideo.poster}
+                aria-label={`${project.title}: ${project.demoVideo.label}`}
+              >
+                <source src={project.demoVideo.src} type="video/mp4" />
+              </video>
+            </div>
+            <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-wide text-mist">{project.demoVideo.label}</figcaption>
+          </figure>
+        </section>
+      )}
       {project.screensPending && (
         <section className="container-page mt-16">
           <Reveal className="grid-field rounded-sm border border-dashed border-line p-8 md:p-12">

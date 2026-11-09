@@ -9,7 +9,7 @@ const layout: Record<string, { span: string; aspect?: string; phones?: boolean }
   beeftrace: { span: "lg:col-span-7", aspect: "aspect-[16/10]" },
   pamoja: { span: "lg:col-span-5", aspect: "aspect-[4/3]" },
   eartgalla: { span: "lg:col-span-7", aspect: "aspect-[16/10]" },
-  "eartgalla-mobile": { span: "lg:col-span-5", aspect: "aspect-[4/3]" },
+  "eartgalla-mobile": { span: "lg:col-span-5", aspect: "aspect-[4/3]", phones: true },
   arkyls: { span: "lg:col-span-6", aspect: "aspect-[16/10]" },
   webstories: { span: "lg:col-span-6", aspect: "aspect-[16/10]" },
 };

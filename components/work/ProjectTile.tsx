@@ -26,11 +26,11 @@ export default function ProjectTile({
     <Reveal delay={(index % 3) * 0.06} className={className}>
       <Link href={`/work/${project.slug}`} className="group block">
         {showPhones && phones ? (
-          <div className="relative overflow-hidden rounded-sm border border-line bg-graphite grid-field px-6 pt-10 md:px-12">
+          <div className={clsx("relative overflow-hidden rounded-sm border border-line bg-graphite grid-field px-6 pt-10 md:px-12", aspect)}>
             <div className="grid grid-cols-3 gap-3 md:gap-6 translate-y-6 md:translate-y-10 transition-transform duration-700 ease-engineer group-hover:translate-y-4">
               {phones.map((s, i) => (
                 <div key={s.src} className={i === 1 ? "-translate-y-6 md:-translate-y-10" : ""}>
-                  <PhoneFrame src={s.src} label={s.label} priority={priority} sizes="(max-width: 768px) 30vw, 22vw" />
+                  <PhoneFrame src={s.src} label={s.label} appName={project.title} aspect={project.screensAspect} priority={priority} sizes="(max-width: 768px) 30vw, 22vw" />
                 </div>
               ))}
             </div>

@@ -69,7 +69,7 @@ export default function Disciplines() {
               </Reveal>
             ))}
           </div>
-          <p className="mt-16 font-mono text-xs uppercase tracking-wide text-night/70 md:mt-24">Currently building: EartGalla Mobile — the gallery on your phone</p>
+          <p className="mt-16 font-mono text-xs uppercase tracking-wide text-night/70 md:mt-24">Currently building: EartGalla Mobile — community stories on your phone</p>
         </div>
       </section>
 

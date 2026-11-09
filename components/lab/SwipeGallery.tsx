@@ -161,7 +161,7 @@ export default function SwipeGallery() {
           </ul>
         )}
         <div className="mt-10 max-w-md border-l-2 border-signal pl-5 text-sm text-mist">
-          <strong className="text-paper">An interaction study, not the app.</strong> This explores how browsing the EartGalla collection could feel in a thumb-sized interface. It uses real pieces from the gallery. The shipped EartGalla Mobile screens will appear in its case study once they&apos;re ready.
+          <strong className="text-paper">An interaction study, not the app.</strong> This explores how browsing the EartGalla collection could feel in a thumb-sized interface. It uses real pieces from the gallery. It is separate from the EartGalla Mobile app; see that case study for real screens.
         </div>
       </div>
       <p className="sr-only" aria-live="polite">{announce}</p>

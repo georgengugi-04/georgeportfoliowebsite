@@ -6,6 +6,7 @@ import { ArrowUpRight, Github, ExternalLink } from "lucide-react";
 import { projects, getProject, statusLabel } from "@/data/projects";
 import PhoneFrame from "@/components/work/PhoneFrame";
 import ProjectVisual from "@/components/work/ProjectVisual";
+import YouTubeEmbed from "@/components/work/YouTubeEmbed";
 import Reveal from "@/components/ui/Reveal";
 
 export function generateStaticParams() {
@@ -144,6 +145,42 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           </ul>
         </section>
       )}
+      {project.videos && project.videos.length > 0 && (
+        <section className="container-page mt-24" aria-labelledby="videos-h">
+          <Reveal>
+            <span className="eyebrow" id="videos-h">Videos</span>
+          </Reveal>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {project.videos.map((v) => (
+              <figure key={v.id}>
+                <YouTubeEmbed id={v.id} title={v.title} />
+                <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-wide text-mist">{v.title}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {project.shots && project.shots.length > 0 && (
+        <section className="container-page mt-24" aria-labelledby="shots-h">
+          <Reveal>
+            <span className="eyebrow" id="shots-h">The website</span>
+          </Reveal>
+          <ul className="mt-10 grid gap-6 md:grid-cols-2">
+            {project.shots.map((sh) => (
+              <li key={sh.src}>
+                <figure>
+                  <div className="relative aspect-[1582/788] overflow-hidden rounded-sm border border-line bg-graphite">
+                    <Image src={sh.src} alt={`${project.title} website: ${sh.label}`} fill sizes="(max-width: 768px) 100vw, 640px" className="object-cover object-top" />
+                  </div>
+                  <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-wide text-mist">{sh.label}</figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       {project.screensPending && (
         <section className="container-page mt-16">
           <Reveal className="grid-field rounded-sm border border-dashed border-line p-8 md:p-12">

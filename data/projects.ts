@@ -28,6 +28,8 @@ export type Project = {
   heroImageAlt?: string;
   gallery: string[];
   screens?: { src: string; label: string }[]; // phone screenshots, rendered in device frames
+  shots?: { src: string; label: string }[]; // browser screenshots of the live site, 16:9-ish
+  videos?: { id: string; title: string }[]; // YouTube video ids (click-to-load embeds)
   screensPending?: string; // honest note shown when screenshots are still to come
   additionalLiveUrls?: { label: string; url: string }[];
   verification?: string; // what has / has not been independently verified
@@ -122,6 +124,10 @@ export const projects: Project[] = [
     logo: "/brand/greentrack-logo.png",
     heroImage: "/projects/greentrack/hero.jpg",
     heroImageAlt: "GreenTrack web experience",
+    videos: [
+      { id: "DcW-R4t1x1Q", title: "GreenTrack — video 1" },
+      { id: "I-AMJv9LnFg", title: "GreenTrack — video 2" },
+    ],
     screens: [
       { src: "/projects/greentrack/app/roles.jpg", label: "Choose your role in the chain" },
       { src: "/projects/greentrack/app/farmer-home.jpg", label: "Farmer home & farm-zone weather" },
@@ -182,10 +188,17 @@ export const projects: Project[] = [
     status: "live",
     disciplines: ["engineering"],
     technologies: [],
-    description: "A live web product. A full case study will be published once its functionality and my contribution are written up accurately.",
+    description: "A website for Arkyls, an architecture and design studio in Nairobi — project showcase, services walkthrough and a filterable portfolio.",
     longDescription:
-      "Arkyls is deployed and publicly accessible. This entry is intentionally brief: the detailed feature list, technology stack and a description of my specific contribution will be added after they have been verified, rather than guessed.",
+      "Arkyls is a live website for an architecture and design studio in Nairobi. It presents the studio through a full-screen hero, a staged services walkthrough with 3D visuals, and a project portfolio filterable by category. The technology stack and a description of my specific contribution will be added once verified, rather than guessed.",
     liveUrl: "https://arkyls.vercel.app/",
+    logo: "/projects/arkyls/logo.png",
+    heroImage: "/projects/arkyls/home.jpg",
+    heroImageAlt: "Arkyls homepage: Spaces built to endure",
+    shots: [
+      { src: "/projects/arkyls/services.jpg", label: "Services — staged process with a 3D visual" },
+      { src: "/projects/arkyls/projects.jpg", label: "Projects — filterable by category" },
+    ],
     gallery: [],
     problem: "",
     solution: "",
@@ -287,6 +300,13 @@ export const projects: Project[] = [
     ],
     heroImage: "/projects/eartgalla/hero.jpg",
     heroImageAlt: "EartGalla gallery homepage",
+    shots: [
+      { src: "/projects/eartgalla/site/journeys.jpg", label: "Journeys — travel stories across Kenya" },
+      { src: "/projects/eartgalla/site/gallery.jpg", label: "The Gallery — artworks with artist credits" },
+      { src: "/projects/eartgalla/site/art-lab.jpg", label: "Art Lab — a scattered collage of works" },
+      { src: "/projects/eartgalla/site/curate-your-wall.jpg", label: "Art Lab — Curate Your Wall" },
+      { src: "/projects/eartgalla/site/gazette.jpg", label: "Gazette — editorial article layout" },
+    ],
     gallery: [
       "/projects/eartgalla/cart.jpg",
       "/projects/eartgalla/gallery/flyer-brand.jpg",

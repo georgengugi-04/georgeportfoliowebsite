@@ -19,9 +19,9 @@ npm run lint
 - `creative.ts` — Creative Studio pieces (drop files in `public/` and add an entry).
 - `experience.ts`, `skills.ts`, `site.ts` — timeline, capability map, identity and links.
 
-### Adding Tigala Mobile / EartGalla Mobile screenshots
-Put images in `public/projects/tigala-mobile/` (or `eartgalla-mobile/`), then in `data/projects.ts` add
-`screens: [{ src: "/projects/tigala-mobile/home.jpg", label: "Home" }]` and delete `screensPending`.
+### Adding EartGalla Mobile screenshots
+Put images in `public/projects/eartgalla-mobile/`, then in `data/projects.ts` add
+`screens: [{ src: "/projects/eartgalla-mobile/home.jpg", label: "Home" }]` and delete `screensPending`.
 
 ## Contact form — setup required
 The form validates client- and server-side, but **only sends mail when configured**. Otherwise it tells the visitor the message was NOT sent.

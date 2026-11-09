@@ -71,10 +71,10 @@ export const timeline: TimelineEntry[] = [
   },
   {
     period: "Now",
-    title: "Tigala Mobile & EartGalla Mobile",
-    org: "Independent projects",
+    title: "EartGalla Mobile",
+    org: "Independent project",
     type: "independent",
-    description: "Two mobile applications currently in development: a cultural archive of Kenya's 42 tribes, and a mobile gallery.",
-    href: "/work/tigala-mobile",
+    description: "A mobile application for the EartGalla gallery, currently in development.",
+    href: "/work/eartgalla-mobile",
   },
 ];

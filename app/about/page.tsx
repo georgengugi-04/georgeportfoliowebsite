@@ -38,8 +38,7 @@ export default function AboutPage() {
                 Working with the JKUAT and JHUB Africa community put me on real traceability problems in agriculture and livestock. Real users, several roles, slow connections. Those constraints shaped GreenTrack and BeefTrace.
               </p>
               <p>
-                Right now I&apos;m building two mobile apps: <Link href="/work/tigala-mobile" className="text-paper underline decoration-signal underline-offset-4">Tigala Mobile</Link>, a cultural archive of Kenya&apos;s 42 tribes, and <Link href="/work/eartgalla-mobile" className="text-paper underline decoration-signal underline-offset-4">EartGalla Mobile</Link>. I&apos;m looking for engineering and product roles, and for collaborators with ideas worth building.
-              </p>
+                Right now I&apos;m building <Link href="/work/eartgalla-mobile" className="text-paper underline decoration-signal underline-offset-4">EartGalla Mobile</Link>, the mobile companion to the gallery, while continuing to develop GreenTrack. I&apos;m looking for engineering and product roles, and for collaborators with ideas worth building.</p>
             </div>
             <blockquote className="mt-12 max-w-2xl border-l-2 border-signal pl-6 font-display text-2xl text-balance">
               I enjoy taking ideas, understanding the problems behind them and transforming them into usable digital experiences.

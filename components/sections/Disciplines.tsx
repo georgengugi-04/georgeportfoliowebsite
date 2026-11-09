@@ -55,7 +55,7 @@ export default function Disciplines() {
             </Reveal>
             <Reveal delay={0.08}>
               <p className="max-w-md text-night/75 text-balance">
-                Flutter and Dart apps with Firebase auth, role-based workflows and real data. GreenTrack is in active development; Tigala Mobile and EartGalla Mobile are the two newest builds.
+                Flutter and Dart apps with Firebase auth, role-based workflows and real data. GreenTrack is in active development, and EartGalla Mobile is the newest build.
               </p>
               <Link href="/work/greentrack" className="mt-6 inline-flex items-center gap-2 rounded-full bg-night px-6 py-3 font-mono text-sm text-white transition-colors hover:bg-neutral-800">
                 GreenTrack case study <ArrowUpRight className="h-4 w-4" />
@@ -69,7 +69,7 @@ export default function Disciplines() {
               </Reveal>
             ))}
           </div>
-          <p className="mt-16 font-mono text-xs uppercase tracking-wide text-night/70 md:mt-24">Currently building: Tigala Mobile — Kenya&apos;s 42 tribes, their origins and folklore · EartGalla Mobile</p>
+          <p className="mt-16 font-mono text-xs uppercase tracking-wide text-night/70 md:mt-24">Currently building: EartGalla Mobile — the gallery on your phone</p>
         </div>
       </section>
 

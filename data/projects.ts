@@ -325,36 +325,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "tigala-mobile",
-    title: "Tigala Mobile",
-    subtitle: "A living archive of Kenya's communities",
-    year: "2026",
-    category: "Mobile development · Cultural heritage",
-    role: "Developer & content author",
-    status: "in-progress",
-    disciplines: ["mobile", "creative"],
-    featured: true,
-    technologies: [],
-    description:
-      "A cultural mobile app that archives the 42 tribes of Kenya — their origins, folklore and the stories that shaped them.",
-    longDescription:
-      "Tigala Mobile is a cultural app and natural archive for the 42 tribes of Kenya. Each community will have its own space covering where it comes from, its folklore and the stories that built it, supported by images and video. The origin stories have been written; the app, its screens and the photo and video material are still being built.",
-    gallery: [],
-    screensPending:
-      "Screenshots are coming. The app is in active development and its interface will be shown here as soon as screens are ready.",
-    problem:
-      "Stories of where Kenya's communities come from live mostly in oral tradition and scattered sources, and are rarely presented in a form younger people want to read, watch and share.",
-    solution:
-      "A mobile archive organised by community, pairing written origin stories and folklore with images and video, designed to be explored rather than read as a textbook.",
-    myContribution:
-      "Writing the origin stories, defining the structure of the archive, and building the mobile application.",
-    teamContribution: undefined,
-    architecture: [],
-    challenges: [],
-    outcomes: ["Origin stories written", "Application build in progress", "Image and video content still to be added"],
-    verification: "In development. Not released. Technology stack to be confirmed.",
-  },
-  {
     slug: "eartgalla-mobile",
     title: "EartGalla Mobile",
     subtitle: "The EartGalla gallery, in your pocket",
@@ -366,7 +336,7 @@ export const projects: Project[] = [
     technologies: [],
     description: "A mobile companion to the EartGalla art gallery and marketplace, currently under development.",
     longDescription:
-      "EartGalla Mobile brings the gallery to phones. It is currently being built alongside Tigala Mobile and is one of the two mobile applications I am actively working on. Screens and scope will be documented here as they stabilise.",
+      "EartGalla Mobile brings the gallery to phones. It is a mobile application I am actively building. Screens and scope will be documented here as they stabilise.",
     liveUrl: undefined,
     gallery: [],
     screensPending: "Screenshots are coming. The app is in active development.",
@@ -403,7 +373,7 @@ export const projects: Project[] = [
 
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);
 
-export const featuredOrder = ["greentrack", "tigala-mobile", "beeftrace", "pamoja", "eartgalla", "eartgalla-mobile", "arkyls", "webstories"];
+export const featuredOrder = ["greentrack", "beeftrace", "pamoja", "eartgalla", "eartgalla-mobile", "arkyls", "webstories"];
 export const orderedProjects = featuredOrder
   .map((slug) => projects.find((p) => p.slug === slug)!)
   .concat(projects.filter((p) => !featuredOrder.includes(p.slug)));

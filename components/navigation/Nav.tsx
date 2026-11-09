@@ -77,9 +77,10 @@ export default function Nav() {
             </nav>
 
             <div className="flex items-center gap-2">
-              <ThemeToggle variant="icon" className="md:hidden" />
-              <ThemeToggle className="hidden md:inline-flex" />
-              <Link href="/contact" className="hidden items-center gap-2 rounded-full bg-signal px-4 py-2 font-mono text-[13px] font-medium text-ink transition-colors hover:bg-paper md:inline-flex">
+              <ThemeToggle variant="icon" className="min-[1200px]:hidden" />
+              <CvLink variant="pop" label="CV" className="hidden min-[1360px]:inline-flex !px-4 !py-1.5 !text-[13px]" />
+              <ThemeToggle className="hidden min-[1200px]:inline-flex" />
+              <Link href="/contact" className="hidden items-center gap-2 whitespace-nowrap rounded-full bg-signal px-4 py-2 font-mono text-[13px] font-medium text-ink transition-colors hover:bg-paper md:inline-flex">
                 <span className="h-1.5 w-1.5 rounded-full bg-ink" aria-hidden />
                 Available — let&apos;s talk
                 <ArrowUpRight className="h-3.5 w-3.5" />
@@ -116,7 +117,7 @@ export default function Nav() {
               })}
               <div className="mt-8 flex flex-wrap gap-3">
                 <ThemeToggle />
-                <CvLink variant="ghost" className="!px-4 !py-2 !text-xs" />
+                <CvLink variant="pop" className="!px-4 !py-2 !text-xs" />
               </div>
               <Link href="/contact" className="btn-primary mt-4 self-start">
                 <span className="h-1.5 w-1.5 rounded-full bg-ink" aria-hidden /> Available — let&apos;s talk

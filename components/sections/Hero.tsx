@@ -48,7 +48,7 @@ export default function Hero() {
             <Link href="/contact" className="btn-ghost">
               Let&apos;s Collaborate
             </Link>
-            <CvLink variant="text" label="Download CV" />
+            <CvLink variant="pop" label="Download CV" />
           </motion.div>
         </div>
 

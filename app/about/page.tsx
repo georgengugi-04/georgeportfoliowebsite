@@ -41,7 +41,7 @@ export default function AboutPage() {
               <p>
                 Right now I&apos;m building <Link href="/work/eartgalla-mobile" className="text-paper underline decoration-signal underline-offset-4">EartGalla Mobile</Link>, the mobile companion to the gallery, while continuing to develop GreenTrack. I&apos;m looking for engineering and product roles, and for collaborators with ideas worth building.</p>
             </div>
-            <div className="mt-10"><CvLink variant="primary" label="Download my CV" /></div>
+            <div className="mt-10"><CvLink variant="pop" label="Download my CV" className="!px-7 !py-3.5" /></div>
             <blockquote className="mt-12 max-w-2xl border-l-2 border-signal pl-6 font-display text-2xl text-balance">
               I enjoy taking ideas, understanding the problems behind them and transforming them into usable digital experiences.
             </blockquote>

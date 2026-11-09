@@ -17,56 +17,48 @@ export const typeLabel: Record<TimelineType, string> = {
   assessment: "Technical assessment",
 };
 
-// Exact start/end dates are intentionally omitted until confirmed.
+// Dates come from George's CV (Nov 2026). Entries the CV does not date use a descriptive label, never a guessed year.
 export const timeline: TimelineEntry[] = [
   {
-    period: "Final year",
+    period: "Expected Nov 2026",
     title: "BSc, Information Technology",
     org: "KCA University, Nairobi",
     type: "education",
-    description: "Undergraduate degree in Information Technology, currently in the final year.",
+    description: "Undergraduate degree in Information Technology, in the final year with graduation expected in November 2026.",
   },
   {
-    period: "2025 — present",
-    title: "Attachment & project work",
-    org: "JHUB Africa (JKUAT)",
+    period: "Jun – Sep 2026",
+    title: "Mobile Developer (attachment)",
+    org: "JHUB Africa",
     type: "attachment",
     description:
-      "Worked inside the JKUAT / JHUB Africa ecosystem with a small product team on agriculture and livestock traceability projects.",
-  },
-  {
-    period: "2025 — present",
-    title: "GreenTrack — Flutter developer",
-    org: "Team project",
-    type: "collaboration",
-    description:
-      "App architecture, UI implementation and Firebase integration for a farm-to-table traceability app spanning several supply-chain roles.",
+      "Worked on GreenTrack: Flutter mobile development, Firebase authentication and Firestore data, weather and crop-health integrations, testing and improvements from user feedback. Joined field validation with farmers and stakeholders in Subukia, Nakuru County.",
     href: "/work/greentrack",
   },
   {
-    period: "2025 — present",
-    title: "BeefTrace — frontend engineer & UI/UX designer",
-    org: "Team project",
+    period: "Team project",
+    title: "BeefTrace — software developer",
+    org: "Livestock traceability platform",
     type: "collaboration",
     description:
-      "Design system and Next.js build of the product-facing web experience for a livestock traceability platform. Backend and platform work belongs to the wider team.",
+      "Contributed to a livestock traceability platform covering digital livestock records, animal identification and QR-based traceability, with work on data management and the product-facing interfaces. Backend and platform work belongs to the wider team.",
     href: "/work/beeftrace",
   },
   {
-    period: "2026",
+    period: "Assessment",
     title: "PAMOJA — stock reservation service",
-    org: "Stage 5 technical assessment",
+    org: "Backend engineering assessment",
     type: "assessment",
     description:
-      "Transactional, idempotent stock reservation API on PostgreSQL with automated tests. Assessment work, not employment or a production system.",
+      "Node.js, TypeScript and PostgreSQL reservation API that prevents overselling under concurrent requests, with idempotency keys and 64 automated tests. Assessment work, not employment or a production system.",
     href: "/work/pamoja",
   },
   {
-    period: "2026",
-    title: "EartGalla — gallery & marketplace",
+    period: "Ongoing",
+    title: "EartGalla — founder & developer",
     org: "Independent project",
     type: "independent",
-    description: "Web storefront, enquiry-based purchase flow and brand graphics for an African art gallery.",
+    description: "A digital platform for Kenyan art, culture and creative communities: gallery presentation, artist discovery, enquiry-based purchasing and brand graphics.",
     href: "/work/eartgalla",
   },
   {

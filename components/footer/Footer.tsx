@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Github, Linkedin, Mail, BookOpen, Instagram } from "lucide-react";
 import { site, nav } from "@/data/site";
+import CvLink from "@/components/ui/CvLink";
 import ThemeToggle from "@/components/navigation/ThemeToggle";
 
 export default function Footer() {
@@ -30,6 +31,7 @@ export default function Footer() {
               <Link key={l.href} href={l.href} className="transition-colors hover:text-paper">{l.label}</Link>
             ))}
             <Link href="/lab" className="transition-colors hover:text-paper">Lab</Link>
+            <CvLink variant="text" label="CV" className="!text-mist hover:!text-paper" />
           </nav>
           <ul className="flex items-center gap-4">
             {social.map(({ href, label, Icon }) => (

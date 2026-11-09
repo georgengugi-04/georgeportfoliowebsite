@@ -27,7 +27,8 @@ export const skillGroups: SkillGroup[] = [
     layer: "Backend",
     blurb: "APIs, authentication and the data rules that keep a system correct.",
     skills: [
-      { name: "Node.js · Express", usedIn: [], note: "REST API development" },
+      { name: "Node.js · Express", usedIn: ["pamoja"], note: "REST API development in TypeScript" },
+      { name: "Automated testing", usedIn: ["pamoja"], note: "Vitest and Supertest against a real database" },
       { name: "REST API design", usedIn: ["pamoja"], note: "Small, explicit, testable endpoints" },
       { name: "Authentication & authorization", usedIn: ["greentrack"], note: "Role-based access, Google Sign-In" },
       { name: "Transactions & idempotency", usedIn: ["pamoja"], note: "Race-condition-safe reservations" },
@@ -50,6 +51,7 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: "PostgreSQL", usedIn: ["pamoja"], note: "Transactional integrity" },
       { name: "MySQL", usedIn: [], note: "Relational data modelling" },
+      { name: "Supabase", usedIn: [], note: "Hosted Postgres and backend services" },
       { name: "Firestore", usedIn: ["greentrack"], note: "Custody-chain and batch data" },
     ],
   },
@@ -59,6 +61,8 @@ export const skillGroups: SkillGroup[] = [
     blurb: "How the work gets reviewed, shipped and kept running.",
     skills: [
       { name: "Git & GitHub", usedIn: ["pamoja", "greentrack"], note: "Version control and collaboration" },
+      { name: "Docker", usedIn: ["pamoja"], note: "Reproducible local databases with Compose" },
+      { name: "Postman · Railway", usedIn: [], note: "API testing and backend hosting" },
       { name: "VS Code", usedIn: [], note: "Primary editor" },
       { name: "Vercel", usedIn: ["beeftrace", "eartgalla", "arkyls"], note: "Deployment" },
       { name: "Cloudflare Workers", usedIn: ["webstories"], note: "Edge deployment" },

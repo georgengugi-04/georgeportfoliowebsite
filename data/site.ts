@@ -14,6 +14,7 @@ export const site = {
   // Optional — set in .env.local / Vercel project settings. See README.
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "",
   linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || "",
+  cv: "/George-Ngugi-CV.pdf",
   github: "https://github.com/georgengugi-04",
   medium: "https://medium.com/@georgengugi612",
   instagram: "https://instagram.com/k.o.s.h.e",

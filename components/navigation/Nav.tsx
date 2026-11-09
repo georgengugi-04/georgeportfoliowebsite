@@ -9,6 +9,7 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import clsx from "clsx";
 import { nav } from "@/data/site";
 import ThemeToggle from "./ThemeToggle";
+import CvLink from "@/components/ui/CvLink";
 
 const isActive = (pathname: string, href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
@@ -113,7 +114,10 @@ export default function Nav() {
                   </motion.div>
                 );
               })}
-              <ThemeToggle className="mt-8 self-start" />
+              <div className="mt-8 flex flex-wrap gap-3">
+                <ThemeToggle />
+                <CvLink variant="ghost" className="!px-4 !py-2 !text-xs" />
+              </div>
               <Link href="/contact" className="btn-primary mt-4 self-start">
                 <span className="h-1.5 w-1.5 rounded-full bg-ink" aria-hidden /> Available — let&apos;s talk
               </Link>

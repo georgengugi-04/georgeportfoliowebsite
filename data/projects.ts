@@ -48,7 +48,7 @@ export const projects: Project[] = [
     subtitle: "Digital Livestock Traceability Platform",
     year: "2025–2026",
     category: "Product engineering · AgTech",
-    role: "Frontend engineer & UI/UX designer (product-facing web experience)",
+    role: "Software developer — frontend engineering and UI/UX design",
     team: "Built with the JKUAT / JHUB Africa team, alongside GreenTrack",
     status: "live",
     disciplines: ["engineering", "creative"],
@@ -223,28 +223,28 @@ export const projects: Project[] = [
     subtitle: "Reliable stock reservation service",
     year: "2026",
     category: "Backend engineering · Fintech infrastructure",
-    role: "Sole author — backend service design and implementation",
+    role: "Author — API design, implementation and testing",
     status: "assessment",
     disciplines: ["engineering"],
     featured: true,
-    technologies: ["PostgreSQL", "REST API", "Automated testing"],
+    technologies: ["Node.js", "TypeScript", "Express", "PostgreSQL", "Docker", "Vitest", "Supertest"],
     description:
       "A stock reservation service built to stay correct under concurrent requests: transactional reservations, idempotency and race-condition prevention.",
     longDescription:
-      "PAMOJA is my implementation for a Stage 5 technical assessment. It is an engineering exercise in correctness: many clients may try to reserve the same limited stock at the same moment, and the service must never oversell. It is not a production deployment and is presented here as assessment work.",
-    githubUrl: "https://github.com/georgengugi-04/pamoja",
+      "PAMOJA is my implementation for a backend engineering technical assessment (Stage 5). It is an engineering exercise in correctness: many clients may try to reserve the same limited stock at the same moment, and the service must never oversell. It is not a production deployment and is presented here as assessment work.",
+    githubUrl: "https://github.com/georgengugi-04/pamoja-stock-reservation",
     gallery: [],
     problem:
       "When several requests try to reserve the same stock at once, naive read-then-write logic oversells inventory. Retried requests (a client timing out and trying again) can also create duplicate reservations.",
     solution:
       "Reservations run inside PostgreSQL transactions so availability checks and decrements happen atomically. Idempotency keys make retries safe, and the API surface is small and explicit so its behaviour under contention can be tested.",
     myContribution:
-      "I designed and implemented the service end to end: the reservation API, the transactional stock logic, idempotent request handling, and an automated test suite that exercises concurrent reservations and repeated requests.",
+      "I built the service end to end: a stock reservation API using PostgreSQL transactions and an atomic conditional UPDATE; idempotency keys backed by a database unique constraint; reservation release and expiry with row locking so stock is restored exactly once even when release and expiry race; 64 automated tests (Vitest, Supertest) run against a real PostgreSQL database, including concurrent-request and race-condition tests; and a technical note documenting the design, trade-offs and limitations. The database runs locally through Docker Compose.",
     architecture: [
-      "REST API — reserve, release and inspect stock",
-      "Application layer — validation and idempotency handling",
-      "PostgreSQL transactions — atomic availability check and decrement",
-      "Automated tests — concurrency and repeat-request scenarios",
+      "Express REST API (TypeScript) — reserve and release stock",
+      "Idempotency keys backed by a database unique constraint",
+      "PostgreSQL — transactions, atomic conditional UPDATE, row locking for release and expiry",
+      "Vitest and Supertest suite — 64 tests against a real PostgreSQL database, including race conditions",
     ],
     challenges: [
       {
@@ -254,15 +254,15 @@ export const projects: Project[] = [
       },
       {
         problem: "Clients retrying a reservation after a timeout.",
-        decision: "Accept an idempotency key and return the original result on repeat requests.",
+        decision: "Back idempotency keys with a database unique constraint and return the original result on repeat requests.",
         result: "A retry cannot create a second reservation.",
       },
     ],
     outcomes: [
-      "A tested reservation service that demonstrates transaction safety and idempotency",
+      "A tested reservation service: 64 automated tests including concurrent-request and race-condition cases",
       "Public source on GitHub",
     ],
-    verification: "Technical assessment work (Stage 5). Not an employment role and not a production deployment.",
+    verification: "Technical assessment work (Stage 5), details taken from the author's CV. Not an employment role and not a production deployment.",
   },
   {
     slug: "eartgalla",

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Github, Linkedin, Mail, BookOpen, Instagram } from "lucide-react";
 import { site, nav } from "@/data/site";
+import ThemeToggle from "@/components/navigation/ThemeToggle";
 
 export default function Footer() {
   const social = [
@@ -40,7 +41,10 @@ export default function Footer() {
             ))}
           </ul>
         </div>
-        <div className="mt-10 border-t border-line pt-6 font-mono text-xs text-mist">© {new Date().getFullYear()} {site.name}. All rights reserved.</div>
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6 font-mono text-xs text-mist">
+          <span>© {new Date().getFullYear()} {site.name}. All rights reserved.</span>
+          <ThemeToggle />
+        </div>
       </div>
     </footer>
   );

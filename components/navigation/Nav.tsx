@@ -76,7 +76,8 @@ export default function Nav() {
             </nav>
 
             <div className="flex items-center gap-2">
-              <ThemeToggle />
+              <ThemeToggle variant="icon" className="md:hidden" />
+              <ThemeToggle className="hidden md:inline-flex" />
               <Link href="/contact" className="hidden items-center gap-2 rounded-full bg-signal px-4 py-2 font-mono text-[13px] font-medium text-ink transition-colors hover:bg-paper md:inline-flex">
                 <span className="h-1.5 w-1.5 rounded-full bg-ink" aria-hidden />
                 Available — let&apos;s talk
@@ -112,7 +113,8 @@ export default function Nav() {
                   </motion.div>
                 );
               })}
-              <Link href="/contact" className="btn-primary mt-8 self-start">
+              <ThemeToggle className="mt-8 self-start" />
+              <Link href="/contact" className="btn-primary mt-4 self-start">
                 <span className="h-1.5 w-1.5 rounded-full bg-ink" aria-hidden /> Available — let&apos;s talk
               </Link>
             </nav>

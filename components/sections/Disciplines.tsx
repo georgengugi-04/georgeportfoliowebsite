@@ -46,7 +46,7 @@ export default function Disciplines() {
       </section>
 
       {/* 02 — Mobile: lime ground */}
-      <section className="bg-signal py-24 text-ink md:py-32" aria-labelledby="mob-h">
+      <section className="bg-lime py-24 text-night md:py-32" aria-labelledby="mob-h">
         <div className="container-page">
           <div className="grid items-end gap-8 md:grid-cols-[1.2fr_1fr]">
             <Reveal>
@@ -54,10 +54,10 @@ export default function Disciplines() {
               <h2 id="mob-h" className="mt-4 font-display text-display-lg text-balance">Built for the phone in someone&apos;s hand.</h2>
             </Reveal>
             <Reveal delay={0.08}>
-              <p className="max-w-md text-ink/75 text-balance">
+              <p className="max-w-md text-night/75 text-balance">
                 Flutter and Dart apps with Firebase auth, role-based workflows and real data. GreenTrack is in active development; Tigala Mobile and EartGalla Mobile are the two newest builds.
               </p>
-              <Link href="/work/greentrack" className="mt-6 inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 font-mono text-sm text-paper transition-colors hover:bg-graphite">
+              <Link href="/work/greentrack" className="mt-6 inline-flex items-center gap-2 rounded-full bg-night px-6 py-3 font-mono text-sm text-white transition-colors hover:bg-neutral-800">
                 GreenTrack case study <ArrowUpRight className="h-4 w-4" />
               </Link>
             </Reveal>
@@ -65,11 +65,11 @@ export default function Disciplines() {
           <div className="mt-14 grid grid-cols-3 gap-4 md:gap-8">
             {screens.map((s, i) => (
               <Reveal key={s.src} delay={i * 0.08} className={i === 1 ? "md:translate-y-10" : ""}>
-                <PhoneFrame src={s.src} label={s.label} sizes="(max-width: 768px) 30vw, 28vw" className="[&_figcaption]:text-ink/70" />
+                <PhoneFrame src={s.src} label={s.label} sizes="(max-width: 768px) 30vw, 28vw" className="[&_figcaption]:text-night/70" />
               </Reveal>
             ))}
           </div>
-          <p className="mt-16 font-mono text-xs uppercase tracking-wide text-ink/70 md:mt-24">Currently building: Tigala Mobile — Kenya&apos;s 42 tribes, their origins and folklore · EartGalla Mobile</p>
+          <p className="mt-16 font-mono text-xs uppercase tracking-wide text-night/70 md:mt-24">Currently building: Tigala Mobile — Kenya&apos;s 42 tribes, their origins and folklore · EartGalla Mobile</p>
         </div>
       </section>
 

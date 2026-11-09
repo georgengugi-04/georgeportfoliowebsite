@@ -15,7 +15,7 @@ function Art({ w, priority }: { w: CreativeWork; priority?: boolean }) {
     <>
       {landscape && <Image src={w.src} alt="" aria-hidden fill sizes="64px" draggable={false} className="scale-125 object-cover opacity-50 blur-2xl" />}
       <Image src={w.src} alt={w.alt} fill sizes="320px" priority={priority} draggable={false} className={clsx("relative", landscape ? "object-contain" : "object-cover")} />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 pt-16">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 pt-16 text-white">
         <div className="font-display text-xl leading-tight">{w.title}</div>
         <div className="mt-1 font-mono text-[10px] uppercase tracking-wide text-signal">
           {w.category}

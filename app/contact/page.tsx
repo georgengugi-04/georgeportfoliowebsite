@@ -1,5 +1,6 @@
 import { Github, Linkedin, Mail, BookOpen, Instagram } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
+import CvLink from "@/components/ui/CvLink";
 import ContactForm from "@/components/contact/ContactForm";
 import { site, SITE_URL } from "@/data/site";
 
@@ -34,6 +35,7 @@ export default function ContactPage() {
                 </li>
               ))}
             </ul>
+            <CvLink variant="ghost" className="mt-8" />
           </Reveal>
         </div>
         <Reveal delay={0.12}>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import CvLink from "@/components/ui/CvLink";
 
 const disciplines = ["Software Engineering", "Mobile Development", "Creative Design"];
 
@@ -47,6 +48,7 @@ export default function Hero() {
             <Link href="/contact" className="btn-ghost">
               Let&apos;s Collaborate
             </Link>
+            <CvLink variant="pop" label="Download CV" />
           </motion.div>
         </div>
 

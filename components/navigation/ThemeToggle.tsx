@@ -38,7 +38,7 @@ export default function ThemeToggle({ variant = "label", className }: { variant?
       onClick={toggle}
       aria-label={`Switch to ${label.toLowerCase()}`}
       className={clsx(
-        "inline-flex h-9 items-center justify-center gap-2 rounded-full border border-line font-mono text-xs uppercase tracking-wide text-paper transition-colors hover:border-signal hover:text-signal",
+        "inline-flex h-9 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-line font-mono text-xs uppercase tracking-wide text-paper transition-colors hover:border-signal hover:text-signal",
         variant === "icon" ? "w-9" : "px-3.5",
         className
       )}

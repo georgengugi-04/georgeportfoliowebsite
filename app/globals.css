@@ -150,3 +150,24 @@ body.no-scroll {
   break-inside: avoid;
   margin-bottom: 1rem;
 }
+
+/* CV call-to-action: accent outline + soft glow that fills on hover; icon bobs gently */
+@layer components {
+.btn-pop {
+  @apply inline-flex items-center gap-2 whitespace-nowrap rounded-full border-2 border-signal px-5 py-2.5 font-mono text-sm font-medium text-signal transition-all duration-300 hover:bg-signal hover:text-ink;
+  box-shadow: 0 0 28px -8px rgb(var(--signal) / 0.55);
+}
+.btn-pop:hover {
+  box-shadow: 0 0 36px -4px rgb(var(--signal) / 0.7);
+  transform: translateY(-2px);
+}
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn-pop .cv-icon {
+    animation: cv-bob 2.2s ease-in-out infinite;
+  }
+  @keyframes cv-bob {
+    0%, 100% { transform: translateY(-1px); }
+    50% { transform: translateY(2px); }
+  }
+}

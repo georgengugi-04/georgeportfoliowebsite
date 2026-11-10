@@ -28,6 +28,10 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
   const project = getProject(params.slug);
   if (!project) notFound();
 
+  // Sequential section numbers so hidden sections never leave gaps (01 is the overview).
+  let sec = 1;
+  const num = () => String(++sec).padStart(2, "0");
+
   const hasDepth = project.architecture.length > 0 || project.challenges.length > 0 || !!project.problem;
 
   return (
@@ -42,8 +46,8 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           <span>{project.category}</span>
         </Reveal>
 
-        <Reveal delay={0.08}>
-          <div className="mt-6 flex items-center gap-4">
+        <div>
+          <div className="mt-6 flex min-w-0 flex-wrap items-center gap-x-4 gap-y-3">
             {project.logo && (
               <div className="relative h-10 md:h-12 w-auto shrink-0">
                 <Image
@@ -55,14 +59,14 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
                 />
               </div>
             )}
-            <h1 className="font-display text-display-lg text-balance max-w-3xl">
+            <h1 className="min-w-0 max-w-3xl break-words font-display text-display-lg text-balance">
               {project.title}
             </h1>
           </div>
           {project.subtitle && (
             <p className="mt-3 text-mist text-lg max-w-2xl">{project.subtitle}</p>
           )}
-        </Reveal>
+        </div>
 
         <Reveal delay={0.14} className="mt-10 grid md:grid-cols-3 gap-8 border-t border-line pt-8">
           <div>
@@ -114,9 +118,9 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         </Reveal>
 
         {project.heroImage && (
-          <Reveal delay={0.2} className="mt-16">
+          <div className="mt-16">
             <ProjectVisual project={project} className="aspect-[16/9]" sizes="(max-width: 1400px) 100vw, 1400px" priority />
-          </Reveal>
+          </div>
         )}
       </section>
 
@@ -134,7 +138,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       {project.screens && project.screens.length > 0 && (
         <section className="container-page mt-24" aria-labelledby="screens-h">
           <Reveal>
-            <span className="eyebrow" id="screens-h">The app</span>
+            <h2 className="eyebrow" id="screens-h">The app</h2>
           </Reveal>
           <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
             {project.screens.map((sc, i) => (
@@ -148,7 +152,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       {project.videos && project.videos.length > 0 && (
         <section className="container-page mt-24" aria-labelledby="videos-h">
           <Reveal>
-            <span className="eyebrow" id="videos-h">Videos</span>
+            <h2 className="eyebrow" id="videos-h">Videos</h2>
           </Reveal>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             {project.videos.map((v) => (
@@ -164,7 +168,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       {project.shots && project.shots.length > 0 && (
         <section className="container-page mt-24" aria-labelledby="shots-h">
           <Reveal>
-            <span className="eyebrow" id="shots-h">The website</span>
+            <h2 className="eyebrow" id="shots-h">The website</h2>
           </Reveal>
           <ul className="mt-10 grid gap-6 md:grid-cols-2">
             {project.shots.map((sh) => (
@@ -184,7 +188,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       {project.demoVideo && (
         <section className="container-page mt-24" aria-labelledby="demo-h">
           <Reveal>
-            <span className="eyebrow" id="demo-h">Screen recording</span>
+            <h2 className="eyebrow" id="demo-h">Screen recording</h2>
           </Reveal>
           <figure className="mt-10 max-w-[280px]">
             <div className="overflow-hidden rounded-[1.75rem] border border-line bg-graphite p-[5px] shadow-[0_30px_60px_-30px_rgba(0,0,0,0.9)]">
@@ -209,20 +213,20 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       {project.screensPending && (
         <section className="container-page mt-16">
           <Reveal className="grid-field rounded-sm border border-dashed border-line p-8 md:p-12">
-            <span className="eyebrow">App screens</span>
+            <h2 className="eyebrow">App screens</h2>
             <p className="mt-3 max-w-xl text-mist">{project.screensPending}</p>
           </Reveal>
         </section>
       )}
 
-      {/* 02 — Problem / 03 — Solution */}
+      {/* Problem / Solution */}
       {project.problem && (<section className="container-page mt-24 md:mt-32 grid md:grid-cols-2 gap-12">
         <Reveal>
-          <span className="eyebrow">02 — The problem</span>
+          <h2 className="eyebrow">{num()} — The problem</h2>
           <p className="mt-4 text-lg text-balance">{project.problem}</p>
         </Reveal>
         <Reveal delay={0.08}>
-          <span className="eyebrow">03 — The solution</span>
+          <h2 className="eyebrow">{num()} — The solution</h2>
           <p className="mt-4 text-lg text-balance">{project.solution}</p>
         </Reveal>
       </section>)}
@@ -232,7 +236,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         <section className="mt-24 md:mt-32 border-t border-line py-16">
           <div className="container-page">
             <Reveal>
-              <span className="eyebrow">Journey</span>
+              <h2 className="eyebrow">Journey</h2>
             </Reveal>
             <Reveal delay={0.08} className="mt-8 flex flex-wrap items-center gap-3 font-mono text-sm uppercase tracking-wide">
               {project.flow.map((step, i) => (
@@ -246,10 +250,10 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         </section>
       )}
 
-      {/* 04 — My contribution */}
+      {/* My contribution */}
       {project.myContribution && (<section className="container-page mt-24 md:mt-32">
         <Reveal>
-          <span className="eyebrow">04 — My engineering contribution</span>
+          <h2 className="eyebrow">{num()} — My engineering contribution</h2>
           <p className="mt-4 text-lg max-w-3xl text-balance">{project.myContribution}</p>
         </Reveal>
         {project.teamContribution && (
@@ -260,12 +264,12 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         )}
       </section>)}
 
-      {/* 05 — Architecture */}
+      {/* Architecture */}
       {project.architecture.length > 0 && (
         <section className="border-t border-line mt-24 md:mt-32 py-16">
           <div className="container-page">
             <Reveal>
-              <span className="eyebrow">05 — Architecture</span>
+              <h2 className="eyebrow">{num()} — Architecture</h2>
             </Reveal>
             <div className="mt-8 flex flex-col max-w-2xl">
               {project.architecture.map((layer, i) => (
@@ -281,11 +285,11 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         </section>
       )}
 
-      {/* 07 — Challenges */}
+      {/* Challenges */}
       {project.challenges.length > 0 && (
         <section className="container-page mt-24 md:mt-32">
           <Reveal>
-            <span className="eyebrow">07 — Technical challenges</span>
+            <h2 className="eyebrow">{num()} — Technical challenges</h2>
           </Reveal>
           <div className="mt-10 grid gap-8">
             {project.challenges.map((c, i) => (
@@ -308,20 +312,18 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         </section>
       )}
 
-      {/* 08 — Outcomes */}
+      {/* Outcomes */}
       {project.outcomes.length > 0 && (
         <section className="border-t border-line mt-24 md:mt-32 py-16">
           <div className="container-page">
             <Reveal>
-              <span className="eyebrow">08 — Results</span>
+              <h2 className="eyebrow">{num()} — Results</h2>
             </Reveal>
             <ul className="mt-8 grid sm:grid-cols-2 gap-4 max-w-2xl">
               {project.outcomes.map((o, i) => (
-                <Reveal key={o} delay={i * 0.05}>
-                  <li className="flex gap-3 text-sm">
-                    <span className="text-signal">—</span>
-                    {o}
-                  </li>
+                <Reveal as="li" key={o} delay={i * 0.05} className="flex gap-3 text-sm">
+                  <span className="text-signal" aria-hidden>—</span>
+                  {o}
                 </Reveal>
               ))}
             </ul>
@@ -347,11 +349,11 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         </section>
       )}
 
-      {/* 09 — Live product CTA */}
+      {/* Live product CTA */}
       {project.liveUrl && (
         <section className="container-page mt-24 md:mt-32">
           <Reveal className="border-t border-line pt-16 flex flex-col items-start">
-            <span className="eyebrow">Live product</span>
+            <h2 className="eyebrow">Live product</h2>
             <a
               href={project.liveUrl}
               target="_blank"

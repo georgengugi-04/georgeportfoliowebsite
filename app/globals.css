@@ -1,8 +1,3 @@
-/* Self-hosted or CDN-loaded in production; safe fallback stacks if offline.
-   Prefer swapping to next/font/google (see app/layout.tsx note) once deployed
-   with internet access, for zero layout-shift, self-hosted fonts. */
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

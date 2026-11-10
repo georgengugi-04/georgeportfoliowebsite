@@ -20,6 +20,7 @@ export default function WorkPage() {
             Each project says what it is, what stage it is at, and which part I built.
           </p>
         </Reveal>
+        <h2 className="sr-only">All projects</h2>
         <div className="mt-20 grid gap-x-8 gap-y-20 md:grid-cols-2">
           {orderedProjects.map((p, i) => (
             <ProjectTile key={p.slug} project={p} index={i} aspect="aspect-[16/10]" priority={i < 2} />

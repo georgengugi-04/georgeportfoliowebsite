@@ -20,14 +20,10 @@ export default function Hero() {
             <span className="text-mist">aka Koshe.exe</span>
           </motion.p>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-6 font-display text-[clamp(2.6rem,7.2vw,6.6rem)] leading-[0.95] tracking-[-0.035em] text-balance"
-          >
+          {/* Plain h1 (no opacity-from-zero) so the headline paints with the HTML and is not gated on hydration. */}
+          <h1 className="mt-6 font-display text-[clamp(2.6rem,7.2vw,6.6rem)] leading-[0.95] tracking-[-0.035em] text-balance">
             I build digital products and design <span className="text-signal">experiences</span> that matter.
-          </motion.h1>
+          </h1>
 
           <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="mt-8 max-w-xl text-lg text-mist text-balance">
             Software engineer, mobile developer and creative designer exploring the intersection of technology, design and real-world problems.

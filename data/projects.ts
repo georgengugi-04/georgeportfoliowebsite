@@ -194,6 +194,7 @@ export const projects: Project[] = [
     longDescription:
       "Arkyls is a live website for an architecture and design studio in Nairobi. It presents the studio through a full-screen hero, a staged services walkthrough with 3D visuals, and a project portfolio filterable by category. The technology stack and a description of my specific contribution will be added once verified, rather than guessed.",
     liveUrl: "https://arkyls.vercel.app/",
+    githubUrl: "https://github.com/georgengugi-04/arkyls",
     logo: "/projects/arkyls/logo.png",
     heroImage: "/projects/arkyls/home.jpg",
     heroImageAlt: "Arkyls homepage: Spaces built to endure",
@@ -223,6 +224,7 @@ export const projects: Project[] = [
     longDescription:
       "WebStories is deployed and publicly accessible on Cloudflare Workers. A detailed case study covering what it does, how it is built and what I contributed will be added once those details are confirmed.",
     liveUrl: "https://webstrories.georgengugi612.workers.dev/",
+    githubUrl: "https://github.com/georgengugi-04/Webstrories",
     gallery: [],
     problem: "",
     solution: "",
@@ -247,7 +249,7 @@ export const projects: Project[] = [
       "A stock reservation service built to stay correct under concurrent requests: transactional reservations, idempotency and race-condition prevention.",
     longDescription:
       "PAMOJA is my implementation for a backend engineering technical assessment (Stage 5). It is an engineering exercise in correctness: many clients may try to reserve the same limited stock at the same moment, and the service must never oversell. It is not a production deployment and is presented here as assessment work.",
-    githubUrl: "https://github.com/georgengugi-04/pamoja-stock-reservation",
+    githubUrl: "https://github.com/georgengugi-04/pamoja",
     gallery: [],
     problem:
       "When several requests try to reserve the same stock at once, naive read-then-write logic oversells inventory. Retried requests (a client timing out and trying again) can also create duplicate reservations.",

@@ -69,8 +69,8 @@ export default function AboutPage() {
           </Reveal>
           <ol className="mt-12 max-w-4xl">
             {timeline.map((e, i) => (
-              <Reveal key={e.title} delay={i * 0.04}>
-                <li className="grid gap-3 border-t border-line py-7 last:border-b md:grid-cols-[150px_1fr] md:gap-10">
+              <Reveal as="li" key={e.title} delay={i * 0.04} className="grid gap-3 border-t border-line py-7 last:border-b md:grid-cols-[150px_1fr] md:gap-10">
+                <>
                   <div className="font-mono text-sm text-signal">{e.period}</div>
                   <div>
                     <div className="flex flex-wrap items-center gap-3">
@@ -80,7 +80,7 @@ export default function AboutPage() {
                     <div className="mt-1 text-sm text-mist">{e.org}</div>
                     <p className="mt-3 max-w-xl text-sm">{e.description}</p>
                   </div>
-                </li>
+                </>
               </Reveal>
             ))}
           </ol>

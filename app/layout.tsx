@@ -1,17 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import { site, SITE_URL } from "@/data/site";
+// Self-hosted fonts (latin subset): no third-party request, no render-blocking stylesheet.
+import "@fontsource/space-grotesk/latin-500.css";
+import "@fontsource/space-grotesk/latin-700.css";
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-500.css";
+import "@fontsource/inter/latin-600.css";
+import "@fontsource/jetbrains-mono/latin-400.css";
+import "@fontsource/jetbrains-mono/latin-500.css";
 import "./globals.css";
 import Nav from "@/components/navigation/Nav";
 import Footer from "@/components/footer/Footer";
-
-// NOTE: fonts are loaded via CSS in globals.css (see @import) rather than
-// next/font/google, so the build works in offline/sandboxed environments.
-// On a normal deploy with internet access, swap this back to next/font/google
-// for Space Grotesk / Inter / JetBrains Mono to get self-hosted, zero-layout-shift fonts:
-//
-//   import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
-//   const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-display", weight: ["500","700"] });
-//   ...then add `${display.variable}` etc. to the <html> className below.
+import MotionProvider from "@/components/ui/MotionProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -61,9 +61,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <Nav />
-        <main id="main">{children}</main>
-        <Footer />
+        <MotionProvider>
+          <Nav />
+          <main id="main">{children}</main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );

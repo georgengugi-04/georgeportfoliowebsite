@@ -31,17 +31,23 @@ export async function POST(req: Request) {
   const to = process.env.CONTACT_TO_EMAIL;
   if (!apiKey || !to) return NextResponse.json({ error: "not_configured" }, { status: 503 });
 
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      from: process.env.CONTACT_FROM_EMAIL || "Portfolio <onboarding@resend.dev>",
-      to: [to],
-      reply_to: email,
-      subject: `Portfolio enquiry — ${type || "General"} — ${name}`,
-      text: `From: ${name} <${email}>\nTopic: ${type}\n\n${message}`,
-    }),
-  });
+  let res: Response;
+  try {
+    res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+      signal: AbortSignal.timeout(10_000),
+      body: JSON.stringify({
+        from: process.env.CONTACT_FROM_EMAIL || "Portfolio <onboarding@resend.dev>",
+        to: [to],
+        reply_to: email,
+        subject: `Portfolio enquiry — ${type || "General"} — ${name}`.replace(/[\r\n]+/g, " "),
+        text: `From: ${name} <${email}>\nTopic: ${type}\n\n${message}`,
+      }),
+    });
+  } catch {
+    return NextResponse.json({ error: "The email service could not be reached. Please try again later." }, { status: 502 });
+  }
   if (!res.ok) return NextResponse.json({ error: "The email service rejected the message. Please try again later." }, { status: 502 });
   return NextResponse.json({ ok: true });
 }

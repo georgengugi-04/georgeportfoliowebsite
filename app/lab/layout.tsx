@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Lab",
   description:
-    "A small WebGL experiment: a procedurally grown root, drifting pollen, and a butterfly that lands on its own terms.",
+    "Small experiments where engineering and art trade ideas: a WebGL root, a raking-light painting study and a swipe gallery.",
+  alternates: { canonical: "/lab" },
 };
 
 export default function LabLayout({ children }: { children: React.ReactNode }) {

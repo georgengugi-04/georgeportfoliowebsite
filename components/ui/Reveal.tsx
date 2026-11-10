@@ -8,14 +8,17 @@ export default function Reveal({
   delay = 0,
   y = 24,
   className,
+  as = "div",
 }: {
   children: ReactNode;
   delay?: number;
   y?: number;
   className?: string;
+  as?: "div" | "li";
 }) {
+  const Tag = as === "li" ? motion.li : motion.div;
   return (
-    <motion.div
+    <Tag
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
@@ -23,6 +26,6 @@ export default function Reveal({
       className={className}
     >
       {children}
-    </motion.div>
+    </Tag>
   );
 }

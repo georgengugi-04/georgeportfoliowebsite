@@ -16,8 +16,8 @@ export default function LabIndex() {
         </Reveal>
         <ul className="mt-20 border-t border-line">
           {experiments.map((e, i) => (
-            <Reveal key={e.slug} delay={i * 0.05}>
-              <li>
+            <Reveal as="li" key={e.slug} delay={i * 0.05}>
+              <>
                 <Link href={`/lab/${e.slug}`} className="group grid items-center gap-4 border-b border-line py-9 md:grid-cols-[90px_1fr_auto] md:gap-10">
                   <span className="font-mono text-sm text-mist transition-colors group-hover:text-signal">{e.n}</span>
                   <div>
@@ -30,7 +30,7 @@ export default function LabIndex() {
                     <ArrowUpRight className="h-5 w-5" />
                   </span>
                 </Link>
-              </li>
+              </>
             </Reveal>
           ))}
         </ul>

@@ -55,7 +55,7 @@ export default function Nav() {
             )}
           >
             <Link href="/" className="flex items-center gap-2" aria-label="Koshe.exe — George Ngugi — home">
-              <Image src="/brand/koshe-logo.png" alt="Koshe.exe" width={128} height={40} className="h-8 w-auto object-contain md:h-9" priority />
+              <Image src="/brand/koshe-mark.png" alt="" aria-hidden width={140} height={114} className="h-8 w-auto object-contain md:h-9" priority />
               <span className="font-mono text-sm tracking-tight">Koshe<span className="text-signal">.exe</span></span>
             </Link>
 

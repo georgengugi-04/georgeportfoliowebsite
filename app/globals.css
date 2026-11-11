@@ -166,3 +166,69 @@ body.no-scroll {
     50% { transform: translateY(2px); }
   }
 }
+
+/* ───────── Intro screen ───────── */
+/* Hidden unless the inline script in <head> sets html[data-intro="1"]. Always dark: it is a brand moment. */
+.intro { display: none; }
+html[data-intro="1"] .intro {
+  position: fixed; inset: 0; z-index: 200; display: block; overflow: hidden; color: #F6F5F1;
+  /* Failsafe: if JS never runs, the intro still removes itself. */
+  animation: intro-failsafe 0.01s linear 5.5s forwards;
+}
+@keyframes intro-failsafe { to { visibility: hidden; pointer-events: none; } }
+
+.intro-curtain {
+  position: absolute; left: 0; right: 0; height: 50.2%; background: #0A0B0A;
+  transition: transform 0.75s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.intro-curtain-top { top: 0; } .intro-curtain-bottom { bottom: 0; }
+.intro.is-out .intro-curtain-top { transform: translateY(-100%); }
+.intro.is-out .intro-curtain-bottom { transform: translateY(100%); }
+
+.intro-stage {
+  position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  background-image:
+    linear-gradient(to right, rgb(180 255 57 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(180 255 57 / 0.045) 1px, transparent 1px);
+  background-size: 64px 64px; background-position: center;
+  transition: opacity 0.3s ease;
+}
+.intro.is-out .intro-stage { opacity: 0; }
+
+.intro-skip {
+  align-self: flex-end; font-family: var(--font-mono), monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgb(246 245 241 / 0.7); border: 1px solid rgb(246 245 241 / 0.25); border-radius: 999px; padding: 0.55rem 1rem;
+  background: transparent; cursor: pointer; opacity: 0; animation: intro-fade 0.4s ease 0.4s forwards;
+  transition: color 0.2s, border-color 0.2s;
+}
+.intro-skip:hover { color: #B4FF39; border-color: #B4FF39; }
+.intro-skip:focus-visible { outline: 2px solid #B4FF39; outline-offset: 3px; }
+
+.intro-center { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.1rem; }
+.intro-mark { height: clamp(3.5rem, 9vw, 5.5rem); width: auto; animation: intro-pop 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both; }
+.intro-word {
+  font-family: var(--font-display), sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: 1;
+  font-size: clamp(3rem, 11vw, 8rem); margin: 0; overflow: hidden;
+}
+.intro-word-inner { display: inline-block; animation: intro-wipe 0.8s cubic-bezier(0.76, 0, 0.24, 1) 0.35s both; }
+.intro-roles {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem 0.9rem; margin: 0.4rem 0 0; padding: 0; list-style: none;
+  font-family: var(--font-mono), monospace; font-size: clamp(0.68rem, 1.9vw, 0.85rem); letter-spacing: 0.16em; text-transform: uppercase; color: rgb(246 245 241 / 0.75);
+}
+.intro-roles li { opacity: 0; animation: intro-rise 0.5s ease both; }
+.intro-dot { color: #B4FF39; font-size: 0.55em; align-self: center; }
+
+.intro-foot {
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem;
+  font-family: var(--font-mono), monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(246 245 241 / 0.55);
+}
+.intro-count { font-family: var(--font-display), sans-serif; font-size: clamp(2rem, 6vw, 3.5rem); letter-spacing: -0.03em; color: #B4FF39; font-variant-numeric: tabular-nums; line-height: 1; }
+.intro-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgb(246 245 241 / 0.08); }
+.intro-bar span { display: block; height: 100%; background: #B4FF39; transform-origin: left; animation: intro-bar 1.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@keyframes intro-fade { to { opacity: 1; } }
+@keyframes intro-pop { from { opacity: 0; transform: scale(0.6) rotate(-8deg); } to { opacity: 1; transform: none; } }
+@keyframes intro-wipe { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes intro-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes intro-bar { from { transform: scaleX(0); } to { transform: scaleX(1); } }

@@ -13,6 +13,7 @@ import Nav from "@/components/navigation/Nav";
 import Footer from "@/components/footer/Footer";
 import MotionProvider from "@/components/ui/MotionProvider";
 import ChatBotLoader from "@/components/chat/ChatBotLoader";
+import Intro from "@/components/intro/Intro";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -33,6 +34,10 @@ export const viewport: Viewport = {
   ],
 };
 
+// Decides before first paint whether the intro plays: home page only, once per tab session,
+// never under reduced motion. Add ?intro to the home URL to replay it.
+const introScript = `try{var d=document.documentElement,q=location.search.indexOf("intro")>-1;if(location.pathname==="/"&&!matchMedia("(prefers-reduced-motion: reduce)").matches&&(q||!sessionStorage.getItem("introSeen")))d.setAttribute("data-intro","1")}catch(e){}`;
+
 // Runs before first paint so there is no flash of the wrong theme.
 const themeScript = `try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark")t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.dataset.theme=t}catch(e){}`;
 
@@ -52,7 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script dangerouslySetInnerHTML={{ __html: themeScript + introScript }} />
       </head>
       <body className="bg-ink text-paper font-body">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }} />
@@ -62,6 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        <Intro />
         <MotionProvider>
           <Nav />
           <main id="main">{children}</main>

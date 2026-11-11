@@ -8,7 +8,7 @@ import CvLink from "@/components/ui/CvLink";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "George Ngugi — final-year IT student at KCA University, software engineer, Flutter developer and creative designer from Nairobi, Kenya.",
+  description: "George Ngugi — final-year IT student at KCA University, software engineer, Flutter and React Native developer and creative designer from Nairobi, Kenya.",
   alternates: { canonical: "/about" },
 };
 

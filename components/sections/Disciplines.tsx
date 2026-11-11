@@ -55,7 +55,7 @@ export default function Disciplines() {
             </Reveal>
             <Reveal delay={0.08}>
               <p className="max-w-md text-night/75 text-balance">
-                Flutter and Dart apps with Firebase auth, role-based workflows and real data. GreenTrack is in active development, and EartGalla Mobile is the newest build.
+                Flutter and Dart apps with Firebase auth, role-based workflows and real data, and React Native with Expo. GreenTrack is in active development, and EartGalla Mobile, built with React Native, is the newest build.
               </p>
               <Link href="/work/greentrack" className="mt-6 inline-flex items-center gap-2 rounded-full bg-night px-6 py-3 font-mono text-sm text-white transition-colors hover:bg-neutral-800">
                 GreenTrack case study <ArrowUpRight className="h-4 w-4" />

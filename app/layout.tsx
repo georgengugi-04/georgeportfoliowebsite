@@ -12,6 +12,7 @@ import "./globals.css";
 import Nav from "@/components/navigation/Nav";
 import Footer from "@/components/footer/Footer";
 import MotionProvider from "@/components/ui/MotionProvider";
+import ChatBotLoader from "@/components/chat/ChatBotLoader";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -65,6 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Nav />
           <main id="main">{children}</main>
           <Footer />
+          <ChatBotLoader />
         </MotionProvider>
       </body>
     </html>

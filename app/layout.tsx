@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   applicationName: "George Ngugi Portfolio",
   authors: [{ name: site.name, url: SITE_URL }],
-  keywords: ["George Ngugi", "Koshe.exe", "software engineer", "Flutter developer", "Next.js", "UI/UX designer", "graphic designer", "Nairobi", "Kenya"],
+  keywords: ["George Ngugi", "Koshe.exe", "software engineer", "Flutter developer", "React Native developer", "Next.js", "UI/UX designer", "graphic designer", "Nairobi", "Kenya"],
   openGraph: { title: site.title, description: site.description, type: "website", url: SITE_URL, siteName: "George Ngugi", locale: "en_KE" },
   twitter: { card: "summary_large_image", title: site.title, description: site.description },
 };

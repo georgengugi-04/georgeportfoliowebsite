@@ -357,7 +357,7 @@ export const projects: Project[] = [
     role: "Developer & designer",
     status: "in-progress",
     disciplines: ["mobile", "creative"],
-    technologies: [],
+    technologies: ["React Native", "Expo", "Expo Go"],
     description: "A mobile app for community stories, languages and oral histories from Kenya, with a reader built for long-form text. In active development.",
     longDescription:
       "EartGalla Mobile is a mobile app I am actively building. It is organised around Discover, Watch, Communities, Saved and Profile, with community pages that list languages, regions, written stories and room for oral histories and short films. A reader view includes adjustable text size and a sources section. The content shown in the screenshots is sample research drafts, marked in the app as not yet reviewed by communities or editors.",
@@ -382,7 +382,7 @@ export const projects: Project[] = [
     architecture: [],
     challenges: [],
     outcomes: ["Application build in progress"],
-    verification: "In development. Not released. The content in the screenshots is sample draft material, marked in the app as not yet reviewed. Technology stack to be confirmed.",
+    verification: "In development. Not released. The content in the screenshots is sample draft material, marked in the app as not yet reviewed. Built with React Native and Expo, and run on devices through Expo Go.",
   },
   {
     slug: "bagboy",

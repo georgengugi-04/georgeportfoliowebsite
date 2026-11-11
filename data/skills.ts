@@ -41,6 +41,8 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       { name: "Flutter", usedIn: ["greentrack"], note: "Cross-platform UI" },
       { name: "Dart", usedIn: ["greentrack"], note: "Application logic and architecture" },
+      { name: "React Native", usedIn: ["eartgalla-mobile"], note: "Cross-platform mobile UI" },
+      { name: "Expo", usedIn: ["eartgalla-mobile"], note: "Development workflow, run on device with Expo Go" },
       { name: "Firebase integration", usedIn: ["greentrack"], note: "Auth, Firestore and Storage" },
     ],
   },

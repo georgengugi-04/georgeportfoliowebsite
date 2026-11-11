@@ -9,7 +9,7 @@ export const site = {
   location: "Nairobi, Kenya",
   title: "George Ngugi — Software Engineer, Mobile Developer & Creative Designer",
   description:
-    "George Ngugi (Koshe.exe) is a Nairobi-based software engineer, Flutter mobile developer and creative designer building digital products and visual experiences.",
+    "George Ngugi (Koshe.exe) is a Nairobi-based software engineer, Flutter and React Native mobile developer and creative designer building digital products and visual experiences.",
   tagline: "Engineering digital experiences. Designing ideas into reality.",
   // Optional — set in .env.local / Vercel project settings. See README.
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "",

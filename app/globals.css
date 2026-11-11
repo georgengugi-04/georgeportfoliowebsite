@@ -232,3 +232,18 @@ html[data-intro="1"] .intro {
 @keyframes intro-wipe { from { transform: translateY(105%); } to { transform: none; } }
 @keyframes intro-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @keyframes intro-bar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* ───────── Page transition (route changes) ───────── */
+.page-tx {
+  position: fixed; inset: 0; z-index: 150; pointer-events: none; background: #0A0B0A;
+  display: flex; align-items: center; justify-content: center;
+  animation: pt-wipe 0.95s cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+.page-tx-label {
+  position: relative; font-family: var(--font-display), sans-serif; font-weight: 700; letter-spacing: -0.04em; text-transform: capitalize;
+  font-size: clamp(2.25rem, 9vw, 6rem); color: #F6F5F1; animation: pt-label 0.95s ease both;
+}
+.page-tx-label i { position: absolute; left: 0; right: 0; bottom: -0.6rem; height: 3px; background: #B4FF39; transform-origin: left; animation: pt-line 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes pt-wipe { 0%, 38% { transform: translateY(0); } 100% { transform: translateY(-100%); } }
+@keyframes pt-label { 0% { opacity: 0; transform: translateY(14px); } 18%, 36% { opacity: 1; transform: none; } 55%, 100% { opacity: 0; } }
+@keyframes pt-line { from { transform: scaleX(0); } to { transform: scaleX(1); } }

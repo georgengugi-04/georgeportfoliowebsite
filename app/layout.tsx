@@ -14,6 +14,7 @@ import Footer from "@/components/footer/Footer";
 import MotionProvider from "@/components/ui/MotionProvider";
 import ChatBotLoader from "@/components/chat/ChatBotLoader";
 import Intro from "@/components/intro/Intro";
+import PageTransition from "@/components/intro/PageTransition";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <Intro />
+        <PageTransition />
         <MotionProvider>
           <Nav />
           <main id="main">{children}</main>

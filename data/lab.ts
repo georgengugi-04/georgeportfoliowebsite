@@ -48,4 +48,12 @@ export const experiments: Experiment[] = [
     tech: "Canvas 2D · spring physics",
     blurb: "A lattice of points that ripple away from your pointer and spring back. Tap to send a pulse across the whole field.",
   },
+  {
+    n: "006",
+    slug: "piano",
+    title: "Piano",
+    line: "Make some noise, politely.",
+    tech: "Web Audio API · oscillators",
+    blurb: "A playable two-octave piano synthesised live in the browser. Touch, mouse or computer keyboard, four waveforms and a tune to try.",
+  },
 ];

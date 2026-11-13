@@ -32,4 +32,12 @@ export const experiments: Experiment[] = [
     tech: "Framer Motion · gestures",
     blurb: "An interaction study for the EartGalla collection: swipe real artworks to save or pass, with drag physics and keyboard control.",
   },
+  {
+    n: "004",
+    slug: "glitch-mark",
+    title: "Glitch Mark",
+    line: "The brand, mid-crash.",
+    tech: "Canvas 2D · channel splitting",
+    blurb: "The Koshe.exe emblem split into red, green and blue copies that tear apart with pointer speed. Tap, move or use the arrow keys.",
+  },
 ];

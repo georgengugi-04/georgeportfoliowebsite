@@ -40,4 +40,12 @@ export const experiments: Experiment[] = [
     tech: "Canvas 2D · channel splitting",
     blurb: "The Koshe.exe emblem split into red, green and blue copies that tear apart with pointer speed. Tap, move or use the arrow keys.",
   },
+  {
+    n: "005",
+    slug: "signal-grid",
+    title: "Signal Grid",
+    line: "A field that notices you.",
+    tech: "Canvas 2D · spring physics",
+    blurb: "A lattice of points that ripple away from your pointer and spring back. Tap to send a pulse across the whole field.",
+  },
 ];

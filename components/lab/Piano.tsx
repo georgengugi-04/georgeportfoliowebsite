@@ -19,14 +19,63 @@ const KEYMAP: Record<string, number> = {
 };
 const keyLabel: Record<number, string> = Object.fromEntries(Object.entries(KEYMAP).map(([k, m]) => [m, k.toUpperCase()]));
 
-// Twinkle, twinkle, little star (traditional / public domain): [midi, beats]
-const TUNE: [number, number][] = [
-  [60, 1], [60, 1], [67, 1], [67, 1], [69, 1], [69, 1], [67, 2],
-  [65, 1], [65, 1], [64, 1], [64, 1], [62, 1], [62, 1], [60, 2],
-  [67, 1], [67, 1], [65, 1], [65, 1], [64, 1], [64, 1], [62, 2],
-  [67, 1], [67, 1], [65, 1], [65, 1], [64, 1], [64, 1], [62, 2],
-  [60, 1], [60, 1], [67, 1], [67, 1], [69, 1], [69, 1], [67, 2],
-  [65, 1], [65, 1], [64, 1], [64, 1], [62, 1], [62, 1], [60, 2],
+type Note = [number, number]; // [midi (0 = rest), beats]
+const r = (arr: Note[], rep: Note[][] = []): Note[] => [...arr, ...rep.flat()];
+
+// All traditional or public-domain melodies.
+const TUNES: { name: string; beat: number; notes: Note[] }[] = [
+  {
+    name: "Twinkle Twinkle", beat: 480,
+    notes: [
+      [60, 1], [60, 1], [67, 1], [67, 1], [69, 1], [69, 1], [67, 2], [65, 1], [65, 1], [64, 1], [64, 1], [62, 1], [62, 1], [60, 2],
+      [67, 1], [67, 1], [65, 1], [65, 1], [64, 1], [64, 1], [62, 2], [67, 1], [67, 1], [65, 1], [65, 1], [64, 1], [64, 1], [62, 2],
+      [60, 1], [60, 1], [67, 1], [67, 1], [69, 1], [69, 1], [67, 2], [65, 1], [65, 1], [64, 1], [64, 1], [62, 1], [62, 1], [60, 2],
+    ],
+  },
+  {
+    name: "Ode to Joy", beat: 460,
+    notes: r(
+      [[64, 1], [64, 1], [65, 1], [67, 1], [67, 1], [65, 1], [64, 1], [62, 1], [60, 1], [60, 1], [62, 1], [64, 1], [64, 1.5], [62, 0.5], [62, 2]],
+      [[[64, 1], [64, 1], [65, 1], [67, 1], [67, 1], [65, 1], [64, 1], [62, 1], [60, 1], [60, 1], [62, 1], [64, 1], [62, 1.5], [60, 0.5], [60, 2]]]
+    ),
+  },
+  {
+    name: "Mary Had a Little Lamb", beat: 420,
+    notes: [
+      [64, 1], [62, 1], [60, 1], [62, 1], [64, 1], [64, 1], [64, 2], [62, 1], [62, 1], [62, 2], [64, 1], [67, 1], [67, 2],
+      [64, 1], [62, 1], [60, 1], [62, 1], [64, 1], [64, 1], [64, 1], [64, 1], [62, 1], [62, 1], [64, 1], [62, 1], [60, 4],
+    ],
+  },
+  {
+    name: "Frère Jacques", beat: 440,
+    notes: [
+      [60, 1], [62, 1], [64, 1], [60, 1], [60, 1], [62, 1], [64, 1], [60, 1], [64, 1], [65, 1], [67, 2], [64, 1], [65, 1], [67, 2],
+      [67, 0.5], [69, 0.5], [67, 0.5], [65, 0.5], [64, 1], [60, 1], [67, 0.5], [69, 0.5], [67, 0.5], [65, 0.5], [64, 1], [60, 1],
+      [60, 1], [67, 1], [60, 2], [60, 1], [67, 1], [60, 2],
+    ],
+  },
+  {
+    name: "Jingle Bells", beat: 330,
+    notes: [
+      [64, 1], [64, 1], [64, 2], [64, 1], [64, 1], [64, 2], [64, 1], [67, 1], [60, 1.5], [62, 0.5], [64, 4],
+      [65, 1], [65, 1], [65, 1.5], [65, 0.5], [65, 1], [64, 1], [64, 1], [64, 0.5], [64, 0.5], [64, 1], [62, 1], [62, 1], [64, 1], [62, 2], [67, 2],
+    ],
+  },
+  {
+    name: "Happy Birthday", beat: 560,
+    notes: [
+      [67, 0.75], [67, 0.25], [69, 1], [67, 1], [72, 1], [71, 2], [67, 0.75], [67, 0.25], [69, 1], [67, 1], [74, 1], [72, 2],
+      [67, 0.75], [67, 0.25], [79, 1], [76, 1], [72, 1], [71, 1], [69, 1], [77, 0.75], [77, 0.25], [76, 1], [72, 1], [74, 1], [72, 3],
+    ],
+  },
+  {
+    name: "Für Elise", beat: 300,
+    notes: [
+      [76, 0.5], [75, 0.5], [76, 0.5], [75, 0.5], [76, 0.5], [71, 0.5], [74, 0.5], [72, 0.5], [69, 1.5], [0, 0.5],
+      [60, 0.5], [64, 0.5], [69, 0.5], [71, 1.5], [0, 0.5], [64, 0.5], [68, 0.5], [71, 0.5], [72, 1.5], [0, 0.5],
+      [64, 0.5], [76, 0.5], [75, 0.5], [76, 0.5], [75, 0.5], [76, 0.5], [71, 0.5], [74, 0.5], [72, 0.5], [69, 2],
+    ],
+  },
 ];
 
 const freq = (m: number) => 440 * Math.pow(2, (m - 69) / 12);
@@ -36,6 +85,7 @@ export default function Piano() {
   const [volume, setVolume] = useState(70);
   const [down, setDown] = useState<Set<number>>(new Set());
   const [playing, setPlaying] = useState(false);
+  const [tuneIdx, setTuneIdx] = useState(0);
   const ctx = useRef<AudioContext | null>(null);
   const master = useRef<GainNode | null>(null);
   const voices = useRef(new Map<number, { osc: OscillatorNode; gain: GainNode }>());
@@ -96,10 +146,13 @@ export default function Piano() {
   const playTune = () => {
     if (playing) { stopTune(); return; }
     ensure(); setPlaying(true);
-    const beat = 480; let at = 100;
-    TUNE.forEach(([m, b]) => {
-      timers.current.push(setTimeout(() => noteOn(m), at));
-      timers.current.push(setTimeout(() => noteOff(m), at + b * beat * 0.9));
+    const { notes, beat } = TUNES[tuneIdx];
+    let at = 100;
+    notes.forEach(([m, b]) => {
+      if (m) {
+        timers.current.push(setTimeout(() => noteOn(m), at));
+        timers.current.push(setTimeout(() => noteOff(m), at + b * beat * 0.88));
+      }
       at += b * beat;
     });
     timers.current.push(setTimeout(() => setPlaying(false), at + 200));
@@ -182,8 +235,16 @@ export default function Piano() {
           <input id="pv" type="range" min={0} max={100} value={volume} onChange={(e) => { setVolume(+e.target.value); if (master.current) master.current.gain.value = (+e.target.value / 100) * 0.35; }} className="mt-3 w-full accent-[#B4FF39]" />
         </div>
         <button onClick={playTune} aria-pressed={playing} className="rounded-full border border-signal px-5 py-2 font-mono text-xs uppercase tracking-wide text-signal transition-colors hover:bg-signal hover:text-ink">
-          {playing ? "Stop" : "Play a tune"}
+          {playing ? "Stop" : "Play tune"}
         </button>
+      </div>
+      <div className="mt-8">
+        <p id="tune-l" className="font-mono text-xs uppercase tracking-wide text-mist">Auto-play · pick a tune, then press Play</p>
+        <div role="group" aria-labelledby="tune-l" className="mt-3 flex flex-wrap gap-2">
+          {TUNES.map((t, i) => (
+            <button key={t.name} onClick={() => { stopTune(); setTuneIdx(i); }} aria-pressed={tuneIdx === i} className={clsx("rounded-full border px-4 py-2 text-sm transition-colors", tuneIdx === i ? "border-signal bg-signal text-ink" : "border-line text-mist hover:border-signal hover:text-signal")}>{t.name}</button>
+          ))}
+        </div>
       </div>
       <p className="mt-6 text-sm text-mist">Tap or click the keys (slide across them for a glissando), or play from your computer keyboard: A–L for the white keys, W E T Y U O P for the black ones. Sound starts only after you press something.</p>
     </div>

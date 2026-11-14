@@ -56,4 +56,12 @@ export const experiments: Experiment[] = [
     tech: "Web Audio API · oscillators",
     blurb: "A playable two-octave piano synthesised live in the browser. Touch, mouse or computer keyboard, four waveforms and seven tunes that play themselves.",
   },
+  {
+    n: "007",
+    slug: "beat-lab",
+    title: "Beat Lab",
+    line: "A band that lives in the browser.",
+    tech: "Web Audio API · step sequencer",
+    blurb: "A 16-step sequencer with six synthesised drums plus bass, pluck, pad and bell. Pick a preset or write your own loop.",
+  },
 ];

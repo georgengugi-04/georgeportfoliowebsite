@@ -36,14 +36,14 @@ export default function AboutPage() {
                 It began with curiosity about how the interfaces I used every day worked underneath. That moved through web development into UI/UX, and then into full-stack and mobile engineering, because the products I wanted to build needed all of it. Drawing and graphic design never stopped running alongside: posters, illustrations and brand work are part of the same practice.
               </p>
               <p>
-                Working with the JKUAT and JHUB Africa community put me on real traceability problems in agriculture and livestock. Real users, several roles, slow connections. Those constraints shaped GreenTrack and BeefTrace.
+                Working with the JKUAT and JHUB Africa community put me on real agriculture and livestock traceability problems: GreenTrack on the farm-to-table side and BeefTrace on livestock. Real users, several roles, slow connections. Those constraints shaped both.
               </p>
               <p>
                 Right now I&apos;m building <Link href="/work/eartgalla-mobile" className="text-paper underline decoration-signal underline-offset-4">EartGalla Mobile</Link>, a mobile app for community stories and languages, while continuing to develop GreenTrack. I&apos;m looking for engineering and product roles, and for collaborators with ideas worth building.</p>
             </div>
             <div className="mt-10"><CvLink variant="pop" label="Download my CV" className="!px-7 !py-3.5" /></div>
             <blockquote className="mt-12 max-w-2xl border-l-2 border-signal pl-6 font-display text-2xl text-balance">
-              I enjoy taking ideas, understanding the problems behind them and transforming them into usable digital experiences.
+              I build and design in the same head: I design the screen and build the system behind it, so nothing gets lost in a handoff.
             </blockquote>
           </Reveal>
           <Reveal delay={0.1} className="lg:pt-24">

@@ -1,6 +1,6 @@
 import { orderedProjects, projects, statusLabel, type Project } from "@/data/projects";
 import { skillGroups } from "@/data/skills";
-import { site } from "@/data/site";
+import { site, linkedinIsPlaceholder } from "@/data/site";
 
 export type ChatLink = { label: string; href: string; external?: boolean };
 export type BotReply = { text: string; links?: ChatLink[] };
@@ -54,7 +54,7 @@ export function answer(input: string): BotReply {
   if (has(q, ["contact", "hire", "reach", "email", "mail", "message", "work with", "collaborat", "available", "freelance", "linkedin"])) {
     const links: ChatLink[] = [{ label: "Contact form", href: "/contact" }];
     if (site.email) links.push({ label: site.email, href: `mailto:${site.email}`, external: true });
-    if (site.linkedin) links.push({ label: "LinkedIn", href: site.linkedin, external: true });
+    if (site.linkedin && !linkedinIsPlaceholder) links.push({ label: "LinkedIn", href: site.linkedin, external: true });
     links.push({ label: "GitHub", href: site.github, external: true });
     return { text: "The quickest way is the contact page. GitHub and other profiles are below too.", links };
   }

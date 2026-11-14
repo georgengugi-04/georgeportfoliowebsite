@@ -1,4 +1,4 @@
-export type CreativeCategory = "Artwork" | "Illustration" | "Flyers & Posters" | "Brand";
+export type CreativeCategory = "Brand" | "Flyers & Posters" | "Artwork" | "Illustration" | "Playing cards";
 
 export type CreativeWork = {
   src: string;
@@ -69,7 +69,7 @@ export const creativeWorks: CreativeWork[] = [
   {
     src: "/projects/eartgalla/gallery/cards/card-2.jpg",
     title: "Illustrated card — 5 of clubs",
-    category: "Illustration",
+    category: "Playing cards",
     alt: "Illustrated playing card with a guitar motif",
     caption: "Illustrated card series",
     width: 720,
@@ -78,7 +78,7 @@ export const creativeWorks: CreativeWork[] = [
   {
     src: "/projects/eartgalla/gallery/cards/card-1.jpg",
     title: "Illustrated card — 7 of clubs",
-    category: "Illustration",
+    category: "Playing cards",
     alt: "Illustrated playing card, seven of clubs",
     caption: "Illustrated card series",
     width: 736,
@@ -87,7 +87,7 @@ export const creativeWorks: CreativeWork[] = [
   {
     src: "/projects/eartgalla/gallery/cards/card-4.jpg",
     title: "Illustrated card — 7 of hearts",
-    category: "Illustration",
+    category: "Playing cards",
     alt: "Illustrated playing card with strawberries",
     caption: "Illustrated card series",
     width: 736,
@@ -96,7 +96,7 @@ export const creativeWorks: CreativeWork[] = [
   {
     src: "/projects/eartgalla/gallery/cards/card-3.jpg",
     title: "Illustrated card — 6 of clubs",
-    category: "Illustration",
+    category: "Playing cards",
     alt: "Illustrated playing card, six of clubs",
     caption: "Illustrated card series",
     width: 736,
@@ -104,10 +104,15 @@ export const creativeWorks: CreativeWork[] = [
   },
 ];
 
-export const creativeCategories: ("All" | CreativeCategory)[] = [
-  "All",
-  "Artwork",
-  "Illustration",
-  "Flyers & Posters",
-  "Brand",
+export const creativeCategories: ("All" | CreativeCategory)[] = ["All", "Brand", "Flyers & Posters", "Artwork", "Illustration", "Playing cards"];
+
+// Open slots for pieces that are NOT from EartGalla. They render as clearly empty placeholders on /design only
+// (never as fake images). To fill one: add a real entry to `creativeWorks` above and delete its slot here.
+export type CreativeSlot = { category: CreativeCategory; hint: string };
+export const creativeSlots: CreativeSlot[] = [
+  { category: "Brand", hint: "A logo or identity for another client or project" },
+  { category: "Flyers & Posters", hint: "A poster or flyer outside EartGalla" },
+  { category: "Artwork", hint: "A personal or commissioned piece" },
+  { category: "Illustration", hint: "An illustration or character study" },
+  { category: "Playing cards", hint: "More cards from a deck, or a different deck" },
 ];

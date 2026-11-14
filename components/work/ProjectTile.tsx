@@ -1,7 +1,7 @@
 import Link from "next/link";
 import clsx from "clsx";
 import { ArrowUpRight } from "lucide-react";
-import { Project, statusLabel } from "@/data/projects";
+import { Project, statusLabel, isPlaceholder } from "@/data/projects";
 import ProjectVisual from "./ProjectVisual";
 import PhoneFrame from "./PhoneFrame";
 import Reveal from "@/components/ui/Reveal";
@@ -47,6 +47,11 @@ export default function ProjectTile({
             </div>
             <h3 className="mt-2 font-display text-2xl md:text-4xl transition-transform duration-300 ease-engineer group-hover:translate-x-1">{project.title}</h3>
             <p className="mt-2 max-w-xl text-sm md:text-base text-mist">{project.description}</p>
+            {project.metric && (
+              <p className={clsx("mt-3 inline-block max-w-xl border-l-2 pl-3 font-mono text-[11px] uppercase tracking-wide", isPlaceholder(project.metric) ? "border-dashed border-line text-mist" : "border-signal text-paper")}>
+                {project.metric}
+              </p>
+            )}
           </div>
           <span className="mt-1 hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line transition-colors group-hover:border-signal group-hover:bg-signal group-hover:text-ink sm:flex">
             <ArrowUpRight className="h-5 w-5" />

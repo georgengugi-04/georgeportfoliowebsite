@@ -24,7 +24,7 @@ export default function YouTubeEmbed({ id, title }: { id: string; title: string 
           className="group absolute inset-0 flex items-center justify-center"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="" loading="lazy" onError={(e) => { e.currentTarget.style.display = "none"; }} className="absolute inset-0 h-full w-full object-cover" />
+          <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt={`Thumbnail for ${title}`} loading="lazy" onError={(e) => { e.currentTarget.style.display = "none"; }} className="absolute inset-0 h-full w-full object-cover" />
           <span className="absolute inset-0 bg-night/40 transition-colors group-hover:bg-night/20" />
           <span className="relative flex h-16 w-16 items-center justify-center rounded-full bg-lime text-night shadow-lg transition-transform group-hover:scale-110">
             <Play className="h-6 w-6 translate-x-0.5" fill="currentColor" />

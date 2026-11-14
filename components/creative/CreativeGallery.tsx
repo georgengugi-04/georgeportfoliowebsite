@@ -4,16 +4,21 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import clsx from "clsx";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { creativeWorks, creativeCategories, CreativeWork } from "@/data/creative";
+import { creativeWorks, creativeCategories, creativeSlots, CreativeWork } from "@/data/creative";
 
-export default function CreativeGallery({ filters = true, limit }: { filters?: boolean; limit?: number }) {
+export default function CreativeGallery({ filters = true, limit, slots = false }: { filters?: boolean; limit?: number; slots?: boolean }) {
   const [cat, setCat] = useState<(typeof creativeCategories)[number]>("All");
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const triggerRef = useRef<HTMLElement | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
 
   let items: CreativeWork[] = cat === "All" ? creativeWorks : creativeWorks.filter((w) => w.category === cat);
-  if (limit) items = items.slice(0, limit);
+  if (limit) {
+    // category-balanced pick: one work per category first, then fill in order
+    const firsts = creativeCategories.slice(1).map((c) => items.find((w) => w.category === c)).filter((w): w is CreativeWork => !!w);
+    items = [...firsts, ...items.filter((w) => !firsts.includes(w))].slice(0, limit);
+  }
+  const openSlots = slots ? creativeSlots.filter((s) => cat === "All" || s.category === cat) : [];
 
   const close = useCallback(() => {
     setOpenIdx(null);
@@ -77,6 +82,15 @@ export default function CreativeGallery({ filters = true, limit }: { filters?: b
                 <span className="font-mono text-[11px] uppercase tracking-wide text-signal">{w.category}</span>
               </span>
             </button>
+          </li>
+        ))}
+        {openSlots.map((s) => (
+          <li key={`slot-${s.category}`}>
+            <div className="flex aspect-[4/5] flex-col items-center justify-center gap-2 border border-dashed border-line p-6 text-center">
+              <span className="font-mono text-[11px] uppercase tracking-wide text-signal">{s.category}</span>
+              <span className="font-display text-lg text-mist">Open slot</span>
+              <span className="max-w-[16rem] text-xs text-mist">{s.hint}. Nothing is shown here until a real piece is added.</span>
+            </div>
           </li>
         ))}
       </ul>

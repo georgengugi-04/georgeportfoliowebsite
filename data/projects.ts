@@ -23,7 +23,7 @@ export type Project = {
   logo?: string; // path under /public — shown wherever the project name is mentioned
   socials?: { label: string; url: string }[];
   disciplines: Discipline[];
-  featured?: boolean;
+  featured?: boolean; // false hides the project from the home page and /work lists; its route stays live
   heroImage?: string; // real screenshot only — omit rather than use a placeholder
   heroImageAlt?: string;
   gallery: string[];
@@ -188,6 +188,7 @@ export const projects: Project[] = [
     category: "Web development · Digital product design",
     role: "Developer",
     status: "live",
+    featured: true,
     disciplines: ["engineering"],
     technologies: [],
     description: "A website for Arkyls, an architecture and design studio in Nairobi — project showcase, services walkthrough and a filterable portfolio.",
@@ -218,6 +219,7 @@ export const projects: Project[] = [
     category: "Web development · Digital experiences",
     role: "Developer",
     status: "live",
+    featured: false,
     disciplines: ["engineering"],
     technologies: [],
     description: "A live web experience deployed on Cloudflare Workers. Full write-up pending verification.",
@@ -356,6 +358,7 @@ export const projects: Project[] = [
     category: "Mobile development · Culture & storytelling",
     role: "Developer & designer",
     status: "in-progress",
+    featured: true,
     disciplines: ["mobile", "creative"],
     technologies: ["React Native", "Expo", "Expo Go"],
     description: "A mobile app for community stories, languages and oral histories from Kenya, with a reader built for long-form text. In active development.",
@@ -409,10 +412,10 @@ export const projects: Project[] = [
 
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);
 
-export const featuredOrder = ["greentrack", "beeftrace", "pamoja", "eartgalla", "eartgalla-mobile", "arkyls", "webstories"];
+export const featuredOrder = ["beeftrace", "arkyls", "eartgalla", "greentrack", "pamoja", "eartgalla-mobile"]; // strongest evidence first
 export const orderedProjects = featuredOrder
   .map((slug) => projects.find((p) => p.slug === slug)!)
-  .concat(projects.filter((p) => !featuredOrder.includes(p.slug)));
+  .concat(projects.filter((p) => !featuredOrder.includes(p.slug) && p.featured !== false));
 
 export const statusLabel: Record<ProjectStatus, string> = {
   live: "Live",

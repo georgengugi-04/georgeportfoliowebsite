@@ -42,6 +42,10 @@ export type Project = {
   architecture: string[]; // ordered layers, top to bottom
   challenges: { problem: string; decision: string; result: string }[];
   outcomes: string[];
+  /** One line for the project card. A [METRIC: …] value is a placeholder still to be filled with a real, verified number. */
+  metric?: string;
+  /** Measured results for the case study "Results" block. Never invent figures: leave [METRIC: …] until you have a real number. */
+  results?: { label: string; value: string }[];
   flow?: string[]; // e.g. supply chain / product journey steps
 };
 
@@ -409,6 +413,47 @@ export const projects: Project[] = [
     outcomes: ["Concept and UX direction defined; implementation not yet started."],
   },
 ];
+
+// ── Outcome metrics ──────────────────────────────────────────────────────────
+// Anything in the form [METRIC: …] is a placeholder, not a result. Replace it with a real, verifiable figure
+// (or delete the line). Placeholders are listed in PLACEHOLDERS.md.
+export const isPlaceholder = (v: string) => /\[METRIC:/.test(v);
+const defaultResults = [
+  { label: "Users", value: "[METRIC: users]" },
+  { label: "Load time", value: "[METRIC: load time]" },
+  { label: "Records handled", value: "[METRIC: records handled]" },
+];
+const metricData: Record<string, { metric: string; results: { label: string; value: string }[] }> = {
+  beeftrace: {
+    metric: "[METRIC: pilot users / animal records registered / load time]",
+    results: [{ label: "Users", value: "[METRIC: pilot users]" }, { label: "Animal records registered", value: "[METRIC: records handled]" }, { label: "Load time", value: "[METRIC: load time]" }],
+  },
+  arkyls: {
+    metric: "[METRIC: monthly visitors / enquiries / load time]",
+    results: [{ label: "Visitors", value: "[METRIC: visitors]" }, { label: "Enquiries received", value: "[METRIC: enquiries]" }, { label: "Load time", value: "[METRIC: load time]" }],
+  },
+  eartgalla: {
+    metric: "[METRIC: artworks listed / enquiries / load time]",
+    results: [{ label: "Artworks listed", value: "[METRIC: artworks listed]" }, { label: "Enquiries received", value: "[METRIC: enquiries]" }, { label: "Load time", value: "[METRIC: load time]" }],
+  },
+  greentrack: {
+    metric: "[METRIC: farmers interviewed / batches logged / records handled]",
+    results: [{ label: "Farmers consulted in Subukia", value: "[METRIC: farmers interviewed]" }, { label: "Crop batches logged", value: "[METRIC: records handled]" }, { label: "App start-up time", value: "[METRIC: load time]" }],
+  },
+  pamoja: {
+    metric: "[METRIC: concurrent requests tested / double-bookings observed / tests passing]",
+    results: [{ label: "Concurrent requests tested", value: "[METRIC: concurrent requests]" }, { label: "Double reservations observed", value: "[METRIC: double reservations]" }, { label: "Automated tests passing", value: "[METRIC: tests passing]" }],
+  },
+  "eartgalla-mobile": {
+    metric: "[METRIC: communities documented / screens built / testers]",
+    results: [{ label: "Communities documented", value: "[METRIC: communities]" }, { label: "Screens built", value: "[METRIC: screens]" }, { label: "Testers so far", value: "[METRIC: testers]" }],
+  },
+};
+for (const p of projects) {
+  const m = metricData[p.slug];
+  p.metric = m?.metric ?? "[METRIC: users / load time / records handled]";
+  p.results = m?.results ?? defaultResults;
+}
 
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);
 

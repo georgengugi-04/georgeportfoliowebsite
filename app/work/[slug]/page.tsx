@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Github, ExternalLink } from "lucide-react";
-import { projects, getProject, statusLabel } from "@/data/projects";
+import { projects, getProject, statusLabel, isPlaceholder } from "@/data/projects";
 import PhoneFrame from "@/components/work/PhoneFrame";
 import ProjectVisual from "@/components/work/ProjectVisual";
 import YouTubeEmbed from "@/components/work/YouTubeEmbed";
@@ -312,21 +312,36 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         </section>
       )}
 
-      {/* Outcomes */}
-      {project.outcomes.length > 0 && (
+      {/* Results */}
+      {(project.outcomes.length > 0 || (project.results?.length ?? 0) > 0) && (
         <section className="border-t border-line mt-24 md:mt-32 py-16">
           <div className="container-page">
             <Reveal>
               <h2 className="eyebrow">{num()} — Results</h2>
             </Reveal>
-            <ul className="mt-8 grid sm:grid-cols-2 gap-4 max-w-2xl">
-              {project.outcomes.map((o, i) => (
-                <Reveal as="li" key={o} delay={i * 0.05} className="flex gap-3 text-sm">
-                  <span className="text-signal" aria-hidden>—</span>
-                  {o}
-                </Reveal>
-              ))}
-            </ul>
+            {project.results && project.results.length > 0 && (
+              <dl className="mt-8 grid gap-4 sm:grid-cols-3">
+                {project.results.map((r) => (
+                  <div key={r.label} className={`rounded-sm border p-5 ${isPlaceholder(r.value) ? "border-dashed border-line" : "border-line"}`}>
+                    <dt className="font-mono text-[11px] uppercase tracking-wide text-mist">{r.label}</dt>
+                    <dd className={`mt-2 font-display text-xl ${isPlaceholder(r.value) ? "text-mist" : "text-paper"}`}>{r.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+            {project.results?.some((r) => isPlaceholder(r.value)) && (
+              <p className="mt-3 font-mono text-[11px] text-mist">Figures in [METRIC: …] brackets have not been measured or supplied yet.</p>
+            )}
+            {project.outcomes.length > 0 && (
+              <ul className="mt-8 grid sm:grid-cols-2 gap-4 max-w-2xl">
+                {project.outcomes.map((o, i) => (
+                  <Reveal as="li" key={o} delay={i * 0.05} className="flex gap-3 text-sm">
+                    <span className="text-signal" aria-hidden>—</span>
+                    {o}
+                  </Reveal>
+                ))}
+              </ul>
+            )}
           </div>
         </section>
       )}

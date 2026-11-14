@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
+import Recorder from "./Recorder";
 
 const WAVES = ["triangle", "sine", "square", "sawtooth"] as const;
 type Wave = (typeof WAVES)[number];
@@ -23,7 +24,7 @@ type Note = [number, number]; // [midi (0 = rest), beats]
 const r = (arr: Note[], rep: Note[][] = []): Note[] => [...arr, ...rep.flat()];
 
 // All traditional or public-domain melodies.
-const TUNES: { name: string; beat: number; notes: Note[] }[] = [
+const BASE: { name: string; beat: number; notes: Note[] }[] = [
   {
     name: "Twinkle Twinkle", beat: 480,
     notes: [
@@ -77,6 +78,22 @@ const TUNES: { name: string; beat: number; notes: Note[] }[] = [
     ],
   },
 ];
+
+// Make each tune a proper performance: the tune, a rest, the tune again an octave higher (when it fits on the keyboard),
+// a rest, then the tune once more with a long final note.
+const TOP = START + COUNT - 1;
+function expand(notes: Note[], beat: number): Note[] {
+  const max = Math.max(...notes.map(([m]) => m));
+  const shifted: Note[] = max + 12 <= TOP ? notes.map(([m, b]) => [m ? m + 12 : 0, b]) : notes;
+  const last = notes[notes.length - 1];
+  const finale: Note[] = [...notes.slice(0, -1), [last[0], last[1] * 2]];
+  let out: Note[] = [...notes, [0, 1], ...shifted, [0, 1], ...finale];
+  const length = (n: Note[]) => (n.reduce((a, [, b]) => a + b, 0) * beat) / 1000;
+  while (length(out) < 40) out = [...out.slice(0, -1), [last[0], last[1]], [0, 1], ...notes.slice(0, -1), [last[0], last[1] * 2]]; // short pieces get extra choruses
+  return out;
+}
+const TUNES = BASE.map((t) => ({ ...t, notes: expand(t.notes, t.beat) }));
+const secs = (t: { notes: Note[]; beat: number }) => Math.round((t.notes.reduce((a, [, b]) => a + b, 0) * t.beat) / 1000);
 
 const freq = (m: number) => 440 * Math.pow(2, (m - 69) / 12);
 
@@ -242,11 +259,12 @@ export default function Piano() {
         <p id="tune-l" className="font-mono text-xs uppercase tracking-wide text-mist">Auto-play · pick a tune, then press Play</p>
         <div role="group" aria-labelledby="tune-l" className="mt-3 flex flex-wrap gap-2">
           {TUNES.map((t, i) => (
-            <button key={t.name} onClick={() => { stopTune(); setTuneIdx(i); }} aria-pressed={tuneIdx === i} className={clsx("rounded-full border px-4 py-2 text-sm transition-colors", tuneIdx === i ? "border-signal bg-signal text-ink" : "border-line text-mist hover:border-signal hover:text-signal")}>{t.name}</button>
+            <button key={t.name} onClick={() => { stopTune(); setTuneIdx(i); }} aria-pressed={tuneIdx === i} className={clsx("rounded-full border px-4 py-2 text-sm transition-colors", tuneIdx === i ? "border-signal bg-signal text-ink" : "border-line text-mist hover:border-signal hover:text-signal")}>{t.name} <span className="font-mono text-[10px] opacity-70">{secs(t)}s</span></button>
           ))}
         </div>
       </div>
       <p className="mt-6 text-sm text-mist">Tap or click the keys (slide across them for a glissando), or play from your computer keyboard: A–L for the white keys, W E T Y U O P for the black ones. Sound starts only after you press something.</p>
+      <Recorder name="piano" getGraph={() => ({ ctx: ensure(), node: master.current! })} />
     </div>
   );
 }

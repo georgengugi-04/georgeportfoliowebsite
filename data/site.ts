@@ -4,9 +4,8 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://georgeportfoliowebsite.vercel.app";
 
 // ── LinkedIn ────────────────────────────────────────────────────────────────
-// Edit this one line (or set NEXT_PUBLIC_LINKEDIN_URL in Vercel) to point at the real profile.
-// Until then the link uses this placeholder, which is NOT a real profile.
-export const LINKEDIN_PLACEHOLDER = "https://www.linkedin.com/in/your-handle-here";
+// The real profile. Set NEXT_PUBLIC_LINKEDIN_URL in Vercel to override it without a code change.
+export const LINKEDIN_URL = "https://www.linkedin.com/in/george-ngugi-884a53327";
 
 export const site = {
   name: "George Ngugi",
@@ -18,7 +17,7 @@ export const site = {
   tagline: "Engineering digital experiences. Designing ideas into reality.",
   // Optional — set in .env.local / Vercel project settings. See README.
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "",
-  linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || LINKEDIN_PLACEHOLDER,
+  linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || LINKEDIN_URL,
   cv: "/George-Ngugi-CV.pdf",
   github: "https://github.com/georgengugi-04",
   medium: "https://medium.com/@georgengugi612",
@@ -26,7 +25,7 @@ export const site = {
   tiktok: "https://tiktok.com/@k.o.s.h.e",
 };
 
-export const linkedinIsPlaceholder = site.linkedin === LINKEDIN_PLACEHOLDER;
+export const linkedinIsPlaceholder = false; // the URL above is real, so it is shown everywhere (search data, chat assistant)
 
 export const nav = [
   { href: "/", label: "Home" },

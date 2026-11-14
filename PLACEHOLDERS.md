@@ -14,8 +14,5 @@ Every `[METRIC: …]` in `data/projects.ts` (see `metricData`) is a placeholder.
 ## Testimonials — `data/testimonials.ts`
 - Two seed entries are marked `placeholder: true`. They are never shown. Replace them with real quotes (and delete the flag) to publish the section.
 
-## LinkedIn — `data/site.ts`
-- `LINKEDIN_URL` is a placeholder. Set `NEXT_PUBLIC_LINKEDIN_URL` in Vercel or edit the constant.
-
 ## Creative studio — `data/creative.ts`
 - Empty slots for Brand, Flyers & Posters, Artwork, Illustration and Playing cards are shown for non-EartGalla work. Add real files to fill them.

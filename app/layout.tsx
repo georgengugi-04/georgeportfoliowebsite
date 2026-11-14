@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { site, SITE_URL } from "@/data/site";
+import { site, SITE_URL, linkedinIsPlaceholder } from "@/data/site";
 // Self-hosted fonts (latin subset): no third-party request, no render-blocking stylesheet.
 import "@fontsource/space-grotesk/latin-500.css";
 import "@fontsource/space-grotesk/latin-700.css";
@@ -51,7 +51,7 @@ const personLd = {
   jobTitle: "Software Engineer, Mobile Developer and Creative Designer",
   address: { "@type": "PostalAddress", addressLocality: "Nairobi", addressCountry: "KE" },
   alumniOf: { "@type": "CollegeOrUniversity", name: "KCA University" },
-  sameAs: [site.github, site.medium, site.instagram, site.linkedin].filter(Boolean),
+  sameAs: [site.github, site.medium, site.instagram, linkedinIsPlaceholder ? "" : site.linkedin].filter(Boolean), // never advertise the placeholder to search engines
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

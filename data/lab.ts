@@ -40,11 +40,11 @@ export const experiments: Experiment[] = [
     summary: "Live Nairobi conditions and a five-day outlook from Open-Meteo, with loading, error and offline states and plain-language farm notes.",
     tags: ["Open-Meteo API", "Fetch states", "Offline handling"], status: "Live", related: { label: "GreenTrack case study", href: "/work/greentrack" },
   },
-  { slug: "palette-extractor", title: "Earth-Tone Palette Extractor", summary: "Pull a usable earth-tone palette out of a photograph.", tags: ["Canvas", "Colour"], status: "Planned" },
-  { slug: "playing-card-designer", title: "Playing Card Designer", summary: "Compose and export a custom playing card.", tags: ["SVG", "Design tool"], status: "Planned" },
-  { slug: "motion-playground", title: "Motion Playground", summary: "Tune easing, spring and stagger values and copy the result.", tags: ["Framer Motion", "Animation"], status: "Planned" },
-  { slug: "role-dashboard-switcher", title: "Role-Based Dashboard Switcher", summary: "One dataset, three roles, three different dashboards.", tags: ["RBAC", "Dashboards"], status: "Planned" },
-  { slug: "build-notes-flutter-vs-react-native", title: "Build Notes: Flutter vs React Native", summary: "What I found building the same kind of screen in both.", tags: ["Flutter", "React Native", "Notes"], status: "Planned" },
+  { slug: "palette-extractor", n: "013", line: "Take the colours, leave the photograph.", title: "Earth-Tone Palette Extractor", summary: "Pull a usable earth-tone palette out of a photograph.", tags: ["Canvas", "Colour"], status: "Live", related: { label: "EartGalla case study", href: "/work/eartgalla" } },
+  { slug: "playing-card-designer", n: "014", line: "Deal yourself something original.", title: "Playing Card Designer", summary: "Compose and export a custom playing card.", tags: ["SVG", "Design tool"], status: "Live", related: { label: "Creative Studio: playing cards", href: "/design" } },
+  { slug: "motion-playground", n: "015", line: "Feel the numbers before you ship them.", title: "Motion Playground", summary: "Tune easing, spring and stagger values and copy the result.", tags: ["Framer Motion", "Animation"], status: "Live", related: { label: "Swipe Gallery (Lab 003)", href: "/lab/swipe-gallery" } },
+  { slug: "role-dashboard-switcher", n: "016", line: "Same data, different doors.", title: "Role-Based Dashboard Switcher", summary: "One dataset, three roles, three different dashboards.", tags: ["RBAC", "Dashboards"], status: "Live", related: { label: "BeefTrace case study", href: "/work/beeftrace" } },
+  { slug: "build-notes-flutter-vs-react-native", n: "017", line: "Two ways to build the same screen.", title: "Build Notes: Flutter vs React Native", summary: "What I found building the same kind of screen in both.", tags: ["Flutter", "React Native", "Notes"], status: "Live", related: { label: "GreenTrack case study", href: "/work/greentrack" } },
 ];
 
 export const liveExperiments = experiments.filter((e) => e.status === "Live");

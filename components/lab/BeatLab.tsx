@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
+import Recorder from "./Recorder";
 
 const STEPS = 16;
 const SCALE = [0, 3, 5, 7, 10]; // C minor pentatonic: every note sounds good with every other
@@ -228,6 +229,7 @@ export default function BeatLab() {
         <button onClick={() => { setPattern(empty()); setPreset(3); }} className="rounded-full border border-line px-4 py-2 font-mono text-xs uppercase tracking-wide text-mist hover:border-signal hover:text-signal">Clear all</button>
         <p className="text-sm text-mist">Click a step to place a drum hit. Bass, Pluck, Pad and Bell steps cycle through five notes (C, E♭, F, G, B♭) each time you click. Click an instrument name to hear it, M to mute it. Sound starts only after you press something.</p>
       </div>
+      <Recorder name="beat" getGraph={() => ({ ctx: ensure(), node: out.current! })} />
     </div>
   );
 }

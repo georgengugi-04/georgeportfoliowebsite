@@ -223,7 +223,7 @@ html[data-intro="1"] .intro {
   display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem;
   font-family: var(--font-mono), monospace; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(246 245 241 / 0.55);
 }
-.intro-count { font-family: var(--font-display), sans-serif; font-size: clamp(2rem, 6vw, 3.5rem); letter-spacing: -0.03em; color: #B4FF39; font-variant-numeric: tabular-nums; line-height: 1; }
+.intro-count { font-family: var(--font-display), sans-serif; font-size: clamp(1.5rem, 4.5vw, 2.5rem); letter-spacing: -0.03em; color: #B4FF39; font-variant-numeric: tabular-nums; line-height: 1; }
 .intro-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgb(246 245 241 / 0.08); }
 .intro-bar span { display: block; height: 100%; background: #B4FF39; transform-origin: left; animation: intro-bar 1.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
 

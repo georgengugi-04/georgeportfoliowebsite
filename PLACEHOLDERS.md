@@ -16,3 +16,6 @@ Every `[METRIC: …]` in `data/projects.ts` (see `metricData`) is a placeholder.
 
 ## Creative studio — `data/creative.ts`
 - Empty slots for Brand, Flyers & Posters, Artwork, Illustration and Playing cards are shown for non-EartGalla work. Add real files to fill them.
+
+## Lab 017: Build Notes (Flutter vs React Native)
+- `data/buildNotes.ts` → `findings` is empty on purpose. Add your own real findings (title, what you found in Flutter, what you found in React Native, optional verdict); the "My findings" section appears automatically once there is at least one.

@@ -64,4 +64,12 @@ export const experiments: Experiment[] = [
     tech: "Web Audio API · step sequencer",
     blurb: "A 16-step sequencer with six synthesised drums plus bass, pluck, pad and bell. Pick a preset or write your own loop, then record it with your voice.",
   },
+  {
+    n: "008",
+    slug: "tidelight",
+    title: "Tidelight",
+    line: "A creature of glass and light.",
+    tech: "Three.js · custom GLSL · instanced particles",
+    blurb: "A bioluminescent organism adrift in a deep digital ocean. It breathes, follows your pointer, and answers a click with a pulse of light.",
+  },
 ];

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const COUNT_MS = 1900; // the "loading" counter
+const COUNT_MS = 1900; // how long the intro plays before the curtain opens
 const OUT_MS = 750; // curtain opening
 
 /**
@@ -15,7 +15,6 @@ const OUT_MS = 750; // curtain opening
 export default function Intro() {
   const [done, setDone] = useState(false);
   const root = useRef<HTMLDivElement>(null);
-  const counter = useRef<HTMLSpanElement>(null);
   const skip = useRef<HTMLButtonElement>(null);
   const finishing = useRef(false);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -33,7 +32,6 @@ export default function Intro() {
     finishing.current = true;
     timers.current.forEach(clearTimeout);
     root.current?.classList.add("is-out");
-    if (counter.current) counter.current.textContent = "100";
     timers.current.push(
       setTimeout(() => {
         try { sessionStorage.setItem("introSeen", "1"); } catch {}
@@ -50,21 +48,11 @@ export default function Intro() {
     setInert(true);
     skip.current?.focus();
 
-    let raf = 0;
-    const start = performance.now();
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / COUNT_MS);
-      const eased = 1 - Math.pow(1 - t, 3);
-      if (counter.current) counter.current.textContent = String(Math.round(eased * 100)).padStart(3, "0");
-      if (t < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
     timers.current.push(setTimeout(() => finish(false), COUNT_MS + 250));
 
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape" || e.key === "Enter" || e.key === " ") { e.preventDefault(); finish(true); } };
     window.addEventListener("keydown", onKey);
     return () => {
-      cancelAnimationFrame(raf);
       timers.current.forEach(clearTimeout);
       window.removeEventListener("keydown", onKey);
       setInert(false);
@@ -99,7 +87,7 @@ export default function Intro() {
 
         <div className="intro-foot">
           <span>George Ngugi · Nairobi, Kenya</span>
-          <span className="intro-count"><span ref={counter}>000</span>%</span>
+          <span className="intro-count">Welcome</span>
         </div>
         <div className="intro-bar"><span /></div>
       </div>

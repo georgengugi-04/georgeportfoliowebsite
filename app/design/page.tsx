@@ -24,11 +24,11 @@ export default function DesignPage() {
           </p>
         </Reveal>
         <div className="mt-16">
-          <CreativeGallery />
+          <CreativeGallery slots />
         </div>
         <Reveal className="mt-20 grid gap-8 border-t border-line pt-10 md:grid-cols-[1fr_auto] md:items-center">
           <p className="max-w-2xl text-sm text-mist">
-            More is on the way: UI explorations and logo work. This studio only shows pieces that exist. The artwork shown comes from the EartGalla collection, where the brand, flyers and storefront are my work.
+            Every piece shown here exists; the dashed slots are open for work beyond EartGalla and show no images. The artwork comes from the EartGalla collection, where the brand, flyers and storefront are my work.
           </p>
           <div className="flex flex-wrap gap-3">
             <a href="https://instagram.com/k.o.s.h.e" target="_blank" rel="noreferrer" className="btn-ghost">Instagram @k.o.s.h.e <ArrowUpRight className="h-4 w-4" /></a>

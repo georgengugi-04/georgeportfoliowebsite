@@ -30,7 +30,6 @@ export default function Footer() {
             {nav.slice(1).map((l) => (
               <Link key={l.href} href={l.href} className="transition-colors hover:text-paper">{l.label}</Link>
             ))}
-            <Link href="/lab" className="transition-colors hover:text-paper">Lab</Link>
             <CvLink variant="text" label="CV" className="!text-mist hover:!text-paper" />
           </nav>
           <ul className="flex items-center gap-4">

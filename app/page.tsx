@@ -1,6 +1,7 @@
 import Hero from "@/components/sections/Hero";
 import IdentityStrip from "@/components/sections/IdentityStrip";
 import FeaturedWork from "@/components/sections/FeaturedWork";
+import Testimonials from "@/components/sections/Testimonials";
 import Disciplines from "@/components/sections/Disciplines";
 import AboutPreview from "@/components/sections/AboutPreview";
 import FinalCTA from "@/components/sections/FinalCTA";
@@ -15,6 +16,7 @@ export default function Home() {
       <Hero />
       <IdentityStrip />
       <FeaturedWork />
+      <Testimonials />
       <Disciplines />
       <section className="py-24 md:py-32">
         <div className="container-page">

@@ -19,3 +19,8 @@ Every `[METRIC: …]` in `data/projects.ts` (see `metricData`) is a placeholder.
 
 ## Lab 017: Build Notes (Flutter vs React Native)
 - `data/buildNotes.ts` → `findings` is empty on purpose. Add your own real findings (title, what you found in Flutter, what you found in React Native, optional verdict); the "My findings" section appears automatically once there is at least one.
+
+## Living Root 2.0: wildlife
+- Birds, a squirrel and a deer/duiker are **not** in the scene. The brief rules out primitive stand-ins, and the build sandbox could not download licensed animated models. To add them, pick properly licensed rigged, animated GLB files (check commercial use and attribution), put them in `public/models/`, and wire them in with `GLTFLoader` and `AnimationMixer` in `components/lab/living-root/engine.ts`. Add the credits to the page.
+- Everything else in the scene (bark, soil, leaves, wings, moss) is generated at runtime, so there are no third-party assets or attribution requirements today.
+- The tree is procedural and labelled as not a specific species; the butterflies are labelled "-inspired", not accurate species models.

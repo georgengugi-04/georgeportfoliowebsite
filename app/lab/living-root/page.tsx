@@ -3,8 +3,8 @@ import Reveal from "@/components/ui/Reveal";
 import LivingRoot from "@/components/lab/LivingRoot";
 
 export const metadata: Metadata = {
-  title: "Living Root — Lab 001",
-  description: "A WebGL experiment: a procedurally grown root, drifting pollen and a butterfly that lands on its own terms.",
+  title: "Living Root 2.0 — Lab 001",
+  description: "The Breathing Forest: a procedurally grown tree and root system, three butterflies that land and take off on their own, a living forest floor and three moods of light, in Three.js.",
   alternates: { canonical: "/lab/living-root" },
 };
 
@@ -15,14 +15,15 @@ export default function LabPage() {
         <Reveal>
           <span className="eyebrow">Lab — Experiment 001</span>
           <h1 className="mt-4 font-display text-display-lg max-w-2xl text-balance">
-            A hero section that grows.
+            Living Root 2.0: the breathing forest.
           </h1>
           <p className="mt-6 text-mist max-w-xl text-balance">
-            An instanced root grown from a curve, moss sampled along
-            whichever side faces the light, and a butterfly that only lands
-            once it decides the branch has gone still. Nothing here is a
-            photo or an imported texture — bark, moss, flowers and wings are
-            all painted onto a canvas at runtime.
+            A tree grown from rules rather than modelled by hand: an irregular
+            trunk, exposed roots that branch and crawl, thousands of individual
+            leaves, and three butterflies that choose where to land. Move the
+            light from morning to evening, push the wind, cut away the soil,
+            or watch it all grow. Nothing is imported: every texture and shape
+            is generated in your browser.
           </p>
         </Reveal>
       </div>
@@ -37,31 +38,33 @@ export default function LabPage() {
         <Reveal delay={0.15} className="border-t border-line pt-12">
           <span className="eyebrow">How it&apos;s built</span>
           <h2 className="mt-4 font-display text-display-md max-w-xl">
-            Three.js, instancing, and a state machine for the butterfly.
+            Rules for growth, a state machine for flight, and light that changes mood.
           </h2>
           <div className="mt-8 grid md:grid-cols-3 gap-8">
             <div>
               <p className="font-mono text-xs uppercase tracking-wide text-signal">Geometry</p>
               <p className="mt-2 text-mist text-sm leading-relaxed">
-                One tube swept along a hand-placed curve, with moss blades
-                instanced along it — a few thousand cones, not individually
-                authored, biased toward whichever side of the root faces up.
+                Trunk, limbs and roots are tapered tubes with noise in their radius and
+                recursive, asymmetric branching. Leaves, ferns, grass and flowers are
+                instanced, so thousands cost a handful of draw calls. Bark, soil and
+                moss are generated on canvases at runtime.
               </p>
             </div>
             <div>
               <p className="font-mono text-xs uppercase tracking-wide text-signal">Motion</p>
               <p className="mt-2 text-mist text-sm leading-relaxed">
-                Pollen drifts on a small custom vertex shader. The butterfly
-                runs its own cruise → approach → land → take-off cycle,
-                independent of the camera or the pointer.
+                One wind field, applied in a shader, sways branches, leaves and grass
+                coherently, and the shadow pass uses the same displacement. The pointer
+                bends nearby plants. Each butterfly cruises, hovers, lands and takes off
+                from its own state machine, and steers away from your cursor.
               </p>
             </div>
             <div>
-              <p className="font-mono text-xs uppercase tracking-wide text-signal">Lifecycle</p>
+              <p className="font-mono text-xs uppercase tracking-wide text-signal">Light &amp; care</p>
               <p className="mt-2 text-mist text-sm leading-relaxed">
-                Mounted and fully disposed on route change — geometries,
-                materials, textures and the renderer itself — so leaving the
-                page doesn&apos;t leave a WebGL context running behind it.
+                Soft shadows, fog, drifting light shafts and contact shadows stand in for
+                full ambient occlusion. Quality drops automatically on slow devices, motion
+                is off under reduced-motion, and everything is disposed when you leave.
               </p>
             </div>
           </div>

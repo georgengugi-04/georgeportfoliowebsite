@@ -12,7 +12,7 @@ export type Experiment = {
 };
 
 export const experiments: Experiment[] = [
-  { n: "001", slug: "living-root", title: "Living Root", line: "A hero section that grows.", summary: "A procedurally grown root, drifting pollen and a butterfly that only lands once the branch is still.", tags: ["Three.js", "WebGL"], status: "Live" },
+  { n: "001", slug: "living-root", title: "Living Root 2.0", line: "The breathing forest.", summary: "A procedurally grown tree and roots, three butterflies that land on their own, a living forest floor and three moods of light. Cut away the soil or watch it grow.", tags: ["Three.js", "WebGL"], status: "Live" },
   { n: "002", slug: "raking-light", title: "Raking Light", line: "See the paint, not the picture.", summary: "Drag a lamp across a real painting. Brightness becomes relief, and a flat photograph turns back into a physical surface.", tags: ["Canvas 2D", "per-pixel lighting"], status: "Live" },
   { n: "003", slug: "swipe-gallery", title: "Swipe Gallery", line: "The gallery, one thumb at a time.", summary: "An interaction study for the EartGalla collection: swipe real artworks to save or pass, with drag physics and keyboard control.", tags: ["Framer Motion", "gestures"], status: "Live" },
   { n: "004", slug: "glitch-mark", title: "Glitch Mark", line: "The brand, mid-crash.", summary: "The Koshe.exe emblem split into red, green and blue copies that tear apart with pointer speed. Tap, move or use the arrow keys.", tags: ["Canvas 2D", "channel splitting"], status: "Live" },

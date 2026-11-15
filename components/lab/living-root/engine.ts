@@ -13,6 +13,8 @@ export type ForestOptions = {
   container: HTMLElement;
   reduced: boolean;
   quality: "auto" | "high" | "low";
+  /** "hero": full-bleed backdrop. No drag capture (the page keeps scrolling), slow camera drift, pointer parallax. */
+  mode?: "lab" | "hero";
   onSelect: (s: Selection) => void;
   onGrowth: (progress: number, done: boolean) => void;
   onCinematicEnd: () => void;
@@ -34,6 +36,7 @@ export type Forest = {
   focusBark(): void;
   focusFoliage(): void;
   resize(): void;
+  setPaused(p: boolean): void;
   dispose(): void;
   species: SpeciesId[];
 };
@@ -54,6 +57,7 @@ const sstep = (a: number, b: number, x: number) => {
 
 export async function createForest(o: ForestOptions): Promise<Forest> {
   const { canvas, container, reduced } = o;
+  const hero = o.mode === "hero";
   const mobile = window.innerWidth < 760 || window.matchMedia("(pointer: coarse)").matches;
   const quality: "high" | "low" = o.quality === "auto" ? (mobile ? "low" : "high") : o.quality;
   const HI = quality === "high";
@@ -843,8 +847,13 @@ export async function createForest(o: ForestOptions): Promise<Forest> {
     const h = Math.max(1, container.clientHeight);
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
-    camera.updateProjectionMatrix();
     const aspect = w / h;
+    if (hero) {
+      // park the tree beside the headline on wide screens, above it on tall ones
+      if (aspect > 1.15) camera.setViewOffset(w, h, -w * 0.17, 0, w, h);
+      else camera.setViewOffset(w, h, 0, h * 0.14, w, h);
+    }
+    camera.updateProjectionMatrix();
     DEF.rad = 25 * Math.min(1.9, Math.max(1, 1 / (aspect * 1.25)));
     radMax = Math.min(30, DEF.rad * 1.4);
     if (!userMoved && !followId && !inspect) goal.rad = cam.rad = DEF.rad;
@@ -996,13 +1005,41 @@ export async function createForest(o: ForestOptions): Promise<Forest> {
     goal.rad = Math.min(radMax, Math.max(radMin, goal.rad * Math.exp(e.deltaY * 0.0025)));
     dirty = true;
   };
-  canvas.addEventListener("pointerdown", onDown);
-  canvas.addEventListener("pointermove", onMove);
-  canvas.addEventListener("pointerup", onUp);
-  canvas.addEventListener("pointercancel", onUp);
-  canvas.addEventListener("pointerleave", onLeave);
-  canvas.addEventListener("keydown", onKey);
-  canvas.addEventListener("wheel", onWheel, { passive: false });
+  // hero: the canvas sits behind the headline, so listen on the window and never capture touch
+  const par = { x: 0, y: 0 };
+  const onHeroMove = (e: PointerEvent) => {
+    if (e.pointerType !== "mouse") return;
+    const r = canvas.getBoundingClientRect();
+    if (e.clientY < r.top || e.clientY > r.bottom) {
+      hoverOn = false;
+      hoverRay = null;
+      return;
+    }
+    ndc.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+    par.x = ndc.x;
+    par.y = ndc.y;
+    hoverOn = true;
+    raycaster.setFromCamera(ndc, camera);
+    hoverRay = raycaster.ray.clone();
+    if (raycaster.ray.intersectPlane(groundPlane, hit)) U.uPointer.value.set(hit.x, U.uPointer.value.y, hit.z);
+    dirty = true;
+  };
+  const onHeroLeave = () => {
+    hoverOn = false;
+    hoverRay = null;
+  };
+  if (hero) {
+    window.addEventListener("pointermove", onHeroMove, { passive: true });
+    document.documentElement.addEventListener("mouseleave", onHeroLeave);
+  } else {
+    canvas.addEventListener("pointerdown", onDown);
+    canvas.addEventListener("pointermove", onMove);
+    canvas.addEventListener("pointerup", onUp);
+    canvas.addEventListener("pointercancel", onUp);
+    canvas.addEventListener("pointerleave", onLeave);
+    canvas.addEventListener("keydown", onKey);
+    canvas.addEventListener("wheel", onWheel, { passive: false });
+  }
 
   // ---------- growth ----------
   let growAuto = false;
@@ -1039,6 +1076,7 @@ export async function createForest(o: ForestOptions): Promise<Forest> {
   const clock = new THREE.Clock();
   let rafId = 0;
   let visible = true;
+  let paused = false;
   let gustT = 0;
   let windBase = reduced ? 0 : 1;
   U.uWind.value = windBase;
@@ -1055,7 +1093,7 @@ export async function createForest(o: ForestOptions): Promise<Forest> {
   const frame = () => {
     rafId = requestAnimationFrame(frame);
     const dt = Math.min(clock.getDelta(), 0.05);
-    if (!visible || document.hidden) return;
+    if (!visible || document.hidden || paused) return;
     const t = (U.uTime.value += reduced ? 0 : dt);
 
     if (reduced && !dirty) return;
@@ -1154,7 +1192,11 @@ export async function createForest(o: ForestOptions): Promise<Forest> {
       goal.ty = 4.0 + 1.6 * Math.sin(t * 0.1);
       goal.pol = 1.36 + 0.07 * Math.sin(t * 0.08);
     }
-    const kc = reduced ? 1 : 1 - Math.exp(-dt * 5);
+    if (hero && !reduced) {
+      goal.az = DEF.az + 0.3 * Math.sin(t * 0.045) + par.x * 0.1;
+      goal.pol = DEF.pol - par.y * 0.03;
+    }
+    const kc = reduced ? 1 : hero ? 1 - Math.exp(-dt * 2.2) : 1 - Math.exp(-dt * 5);
     cam.az += (goal.az - cam.az) * kc;
     cam.pol += (goal.pol - cam.pol) * kc;
     cam.rad += (goal.rad - cam.rad) * kc;
@@ -1284,10 +1326,16 @@ export async function createForest(o: ForestOptions): Promise<Forest> {
       go({ pol: 1.42, rad: 6.5, tx: 2.4, ty: 7.0, tz: 1.0 });
     },
     resize: layout,
+    setPaused(p) {
+      paused = p;
+      if (!p) dirty = true;
+    },
     dispose() {
       cancelAnimationFrame(rafId);
       ro.disconnect();
       io.disconnect();
+      window.removeEventListener("pointermove", onHeroMove);
+      document.documentElement.removeEventListener("mouseleave", onHeroLeave);
       canvas.removeEventListener("pointerdown", onDown);
       canvas.removeEventListener("pointermove", onMove);
       canvas.removeEventListener("pointerup", onUp);

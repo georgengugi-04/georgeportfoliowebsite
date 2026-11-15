@@ -46,7 +46,7 @@ export default function Nav() {
 
   return (
     <>
-      <header className={clsx("fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-engineer", scrolled ? "py-3" : "py-5")}>
+      <header className={clsx("fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-engineer", scrolled ? "py-3" : "py-5", pathname === "/" && !scrolled && !open && "nav-on-dark")}>
         <div className="container-page">
           <div
             className={clsx(

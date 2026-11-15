@@ -1,4 +1,5 @@
-import Hero from "@/components/sections/Hero";
+import WorldHero from "@/components/home/WorldHero";
+import LabEntrance from "@/components/home/LabEntrance";
 import IdentityStrip from "@/components/sections/IdentityStrip";
 import FeaturedWork from "@/components/sections/FeaturedWork";
 import Testimonials from "@/components/sections/Testimonials";
@@ -13,7 +14,8 @@ import { ArrowUpRight } from "lucide-react";
 export default function Home() {
   return (
     <>
-      <Hero />
+      <WorldHero />
+      <LabEntrance />
       <IdentityStrip />
       <FeaturedWork />
       <Testimonials />

@@ -247,3 +247,14 @@ html[data-intro="1"] .intro {
 @keyframes pt-wipe { 0%, 38% { transform: translateY(0); } 100% { transform: translateY(-100%); } }
 @keyframes pt-label { 0% { opacity: 0; transform: translateY(14px); } 18%, 36% { opacity: 1; transform: none; } 55%, 100% { opacity: 0; } }
 @keyframes pt-line { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+
+/* Header over the dark immersive hero: pin the dark palette so contrast holds in either theme. */
+.nav-on-dark {
+  color: rgb(246 245 241);
+  --ink: 10 11 10;
+  --paper: 246 245 241;
+  --mist: 190 194 188;
+  --line: 60 63 57;
+  --signal: 180 255 57;
+}

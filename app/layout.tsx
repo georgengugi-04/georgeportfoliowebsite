@@ -15,6 +15,7 @@ import MotionProvider from "@/components/ui/MotionProvider";
 import ChatBotLoader from "@/components/chat/ChatBotLoader";
 import Intro from "@/components/intro/Intro";
 import PageTransition from "@/components/intro/PageTransition";
+import SceneTransition from "@/components/worlds/SceneTransition";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -70,6 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <Intro />
         <PageTransition />
+        <SceneTransition />
         <MotionProvider>
           <Nav />
           <main id="main">{children}</main>

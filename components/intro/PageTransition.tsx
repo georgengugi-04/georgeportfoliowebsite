@@ -21,6 +21,7 @@ export default function PageTransition() {
     if (prev.current === pathname) return;
     prev.current = pathname;
     if (document.documentElement.getAttribute("data-intro") === "1") return;
+    if (document.documentElement.getAttribute("data-scene") === "1") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = Date.now();
     setRun({ id, label: labelFor(pathname) });

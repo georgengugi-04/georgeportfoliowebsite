@@ -13,6 +13,7 @@ export default function ProjectTile({
   aspect = "aspect-[4/3]",
   showPhones,
   priority,
+  detailed,
 }: {
   project: Project;
   index: number;
@@ -20,6 +21,8 @@ export default function ProjectTile({
   aspect?: string;
   showPhones?: boolean;
   priority?: boolean;
+  /** Home page: also show the problem, my role and the stack. Fields that are still empty are skipped, never filled in. */
+  detailed?: boolean;
 }) {
   const phones = project.screens?.slice(1, 4);
   return (
@@ -47,7 +50,28 @@ export default function ProjectTile({
             </div>
             <h3 className="mt-2 font-display text-2xl md:text-4xl transition-transform duration-300 ease-engineer group-hover:translate-x-1">{project.title}</h3>
             <p className="mt-2 max-w-xl text-sm md:text-base text-mist">{project.description}</p>
-            {project.metric && (
+            {detailed && (
+              <dl className="mt-4 grid max-w-xl gap-2.5 text-sm">
+                {project.problem && (
+                  <div>
+                    <dt className="font-mono text-[11px] uppercase tracking-wide text-signal">Problem</dt>
+                    <dd className="mt-0.5 line-clamp-3 text-mist">{project.problem}</dd>
+                  </div>
+                )}
+                <div>
+                  <dt className="font-mono text-[11px] uppercase tracking-wide text-signal">My role</dt>
+                  <dd className="mt-0.5 text-mist">{project.role}</dd>
+                </div>
+              </dl>
+            )}
+            {detailed && project.technologies.length > 0 && (
+              <ul className="mt-4 flex max-w-xl flex-wrap gap-1.5" aria-label={`${project.title} technologies`}>
+                {project.technologies.slice(0, 6).map((t) => (
+                  <li key={t} className="rounded-full border border-line px-2.5 py-1 font-mono text-[11px] text-paper/80">{t}</li>
+                ))}
+              </ul>
+            )}
+            {project.metric && !isPlaceholder(project.metric) && (
               <p className={clsx("mt-3 inline-block max-w-xl border-l-2 pl-3 font-mono text-[11px] uppercase tracking-wide", isPlaceholder(project.metric) ? "border-dashed border-line text-mist" : "border-signal text-paper")}>
                 {project.metric}
               </p>

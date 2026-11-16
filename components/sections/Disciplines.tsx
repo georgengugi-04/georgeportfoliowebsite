@@ -7,15 +7,17 @@ import { getProject } from "@/data/projects";
 import { architectureExamples } from "@/data/skills";
 import { creativeWorks } from "@/data/creative";
 
-export default function Disciplines() {
+function data() {
   const gt = getProject("greentrack")!;
   const screens = (gt.screens ?? []).filter((s) => /pest-scan|dashboard|trace-journey/.test(s.src));
   const art = creativeWorks.filter((w) => ["artwork-hyena", "artwork-moon", "flyer-brand"].some((k) => w.src.includes(k)));
 
+  return { screens, art };
+}
+
+export function Engineering() {
   return (
-    <>
-      {/* 01 — Engineering: technical, grid, monospaced */}
-      <section className="border-t border-line py-24 md:py-32" aria-labelledby="eng-h">
+    <section className="border-t border-line py-24 md:py-32" aria-labelledby="eng-h">
         <div className="container-page grid gap-14 lg:grid-cols-[1fr_1.3fr]">
           <Reveal>
             <span className="eyebrow">01 — Engineering</span>
@@ -44,9 +46,13 @@ export default function Disciplines() {
           </div>
         </div>
       </section>
+  );
+}
 
-      {/* 02 — Mobile: lime ground */}
-      <section className="bg-lime py-24 text-night md:py-32" aria-labelledby="mob-h">
+export function Mobile() {
+  const { screens } = data();
+  return (
+    <section className="bg-lime py-24 text-night md:py-32" aria-labelledby="mob-h">
         <div className="container-page">
           <div className="grid items-end gap-8 md:grid-cols-[1.2fr_1fr]">
             <Reveal>
@@ -72,9 +78,13 @@ export default function Disciplines() {
           <p className="mt-16 font-mono text-xs uppercase tracking-wide text-night/70 md:mt-24">Currently building: EartGalla Mobile — community stories on your phone</p>
         </div>
       </section>
+  );
+}
 
-      {/* 03 — Creative studio: warm paper ground */}
-      <section className="bg-paper py-24 text-ink md:py-32" aria-labelledby="cre-h">
+export function Creative() {
+  const { art } = data();
+  return (
+    <section className="bg-paper py-24 text-ink md:py-32" aria-labelledby="cre-h">
         <div className="container-page">
           <Reveal className="flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -96,6 +106,5 @@ export default function Disciplines() {
           </div>
         </div>
       </section>
-    </>
   );
 }

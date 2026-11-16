@@ -139,7 +139,7 @@ export default function WorldHero() {
               Explore the forest →
             </SceneLink>
           </div>
-          <a href="#lab" className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-white/70 hover:text-white">
+          <a href="#work" className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-white/70 hover:text-white">
             Scroll <ArrowDown className="h-3.5 w-3.5" aria-hidden />
           </a>
         </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
 import { ArrowRight } from "lucide-react";
 import { timeline, typeLabel } from "@/data/experience";
@@ -7,7 +8,17 @@ export default function AboutPreview() {
   return (
     <section className="border-t border-line py-24 md:py-32" aria-labelledby="about-h">
       <div className="container-page grid gap-10 md:grid-cols-[1fr_2fr] md:gap-16">
-        <Reveal><span className="eyebrow">About &amp; experience</span></Reveal>
+        <Reveal>
+          <span className="eyebrow">About &amp; experience</span>
+          <figure className="mt-8 max-w-[18rem]">
+            <div className="relative aspect-square overflow-hidden rounded-sm border border-line">
+              <Image src="/profile/george.jpg" alt="Portrait of George Ngugi" fill sizes="(max-width: 768px) 70vw, 20vw" className="object-cover" />
+            </div>
+            <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-wide text-mist">
+              <span className="text-paper">George Ngugi</span> · Koshe.exe · Nairobi
+            </figcaption>
+          </figure>
+        </Reveal>
         <div>
           <Reveal delay={0.08}>
             <h2 id="about-h" className="max-w-3xl font-display text-display-md text-balance">I build and design in the same head.</h2>
